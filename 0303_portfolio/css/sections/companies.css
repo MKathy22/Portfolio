@@ -1,0 +1,26 @@
+.company-section {
+  margin-top: var(--xl);
+  margin-bottom: var(--xxxl);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--l)
+}
+
+.company-grid {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+.company-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}

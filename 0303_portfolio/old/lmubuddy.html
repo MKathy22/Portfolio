@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>LMU Buddy App Case Study</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/lmub-globals.css" />
+  <link rel="stylesheet" href="css/lmub-components.css">
+  <link rel="stylesheet" href="css/sections/header.css" />
+  <link rel="stylesheet" href="css/sections/footer.css" />
+  <script defer src="https://unpkg.com/@phosphor-icons/web"></script>
+
+</head>
+
+<div class="cursor">
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div>
+
+<button class="back-top" id="backTop">
+  <i class="ph ph-arrow-up"></i>
+</button>
+
+<body>
+  <!--div id="loader">
+    <img src="img/MK.png" alt="loading logo">
+  </div-->
+
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="#" class="brand" aria-label="Homepage">
+        <div class="brand-icon">
+          <img src="img/MK.png" alt="Icon Personal Page" />
+        </div>
+        <span class="brand-name">Katharina Manicke</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About me</a>
+        <a href="#resume">Download Resume</a>
+      </nav>
+
+      <a href="mailto:manikath22@gmail.com" class="btn btn-primary">Contact Me</a>
+    </div>
+  </header>
+
+
+  <main>
+    <!-- Hero -->
+    <section class="section hero" id="top">
+      <div class="hero-grid">
+        <img src="img/LMUBuddy.png">
+        <div>
+          <h1 class="split-headline split-headline-hero">
+            <span class="headline-gradient">LMU Buddy</span>
+            <span class="headline-dark">App.</span>
+          </h1>
+          <p>
+            A mobile application that improves the LMU Buddy Program by using AI-driven matching and offers tools for
+            planning, communication, and cultural exchange between local and international students.
+          </p>
+          <div class="tag-row">
+            <span class="tag">July - October 2025</span>
+            <span class="tag">Privat Project</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-nav">
+        <div class="nav-line"></div>
+        <button data-target="existing-project">Existing Project</button>
+        <button data-target="goal">Goal</button>
+        <button data-target="experience">Experience</button>
+        <button data-target="target">Target Group</button>
+        <button data-target="problem">Problem</button>
+        <button data-target="solution">Solution</button>
+        <button data-target="prototype">Prototyping</button>
+        <button data-target="future">Future</button>
+        <button data-target="process">Process</button>
+      </div>
+    </section>
+
+
+    <!-- GOAL -->
+
+    <section class="section alt" id="existing-project">
+      <div class="container">
+        <div class="small-headline">Existing Project</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-users"></i></div>
+          <span class="headline-dark">What is the</span>
+          <span class="headline-gradient">LMU Buddy Program.</span>
+        </h2>
+        <p>
+          The LMU Buddy Program <b>pairs international exchange students with
+          local LMU students</b>, helping newcomers settle into life in Munich
+          while fostering cultural exchange, social support, and long-lasting friendships.
+          All students fill out an online form with basic details.
+          Pair matching and notifications are made manually by the LMU team. From there, most
+          communication moves to private messaging platforms like WhatsApp.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- PROBLEM -->
+    <section class="section" id="goal">
+      <div class="container">
+        <div class="small-headline">Project Goal</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-warning-circle"></i></div>
+          <span class="headline-dark">The goal of creating</span>
+          <span class="headline-gradient">the LMU Buddy App.</span>
+        </h2>
+        <p>Design a secure and user-friendly app that:</p>
+        <ul class="service-list">
+          <li>Provides exchange and local students with tools to communicate and explore together</li>
+          <li>Improves buddy matching using AI</li>
+          <li>Strengthens the sense of community and cultural exchange at LMU</li>
+          <li>Ensures data privacy and safety through campus verification and minimal data sharing</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- Experience -->
+    <section class="section  alt" id="experience">
+      <div class="container">
+        <div class="small-headline">My own experience</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-check-fat"></i></div>
+          <span class="headline-dark">The problems I found</span>
+          <span class="headline-gradient">within the existing program.</span>
+        </h2>
+        <p>I participated in the LMU Buddy Program three times, supporting a total of five exchange students
+          from different countries over different semesters. While I genuinely found the program rewarding and valuable,
+          especially for cultural exchange, I noticed several consistent pain points that affected both me and the
+          buddies I was matched with.</p>
+        <div class="experience-card">
+          <div class="card-title">Positive Effects</div>
+          <ul class="service-list">
+            <li>share cultural experiences - e.g. introducing my buddies to German food, customs, and every day life in
+              Munich</li>
+            <li>chance to offer insider tips: European travel advice, local hangouts, local shops etc.</li>
+            <li>meaningful way to meet new people from very different backgrounds</li>
+          </ul>
+        </div>
+        <div class="experience-card">
+          <div class="card-title">Negative Effects</div>
+          <ul class="service-list">
+            <p><li><b>Unclear Matching process:</b>
+            currently often different interests, study fields and personalities =&gt; harder to help / build a strong connection</li></p>
+            <p><b>Time & Scheduling Conflicts</b>
+            <li>hard to meet regularly because of different schedules</li>
+            <li>struggle to offer alternatives or introduce them to other students - no network connection</li>
+            </p><b>Support Expectations</b>
+            <li>no chance for support before arrival - late contact connection</li>
+            <li>hard to help with administrative processes, or class-related questions — different faculty or just for
+              exchange students</li>
+            <b>Lack of Community Features</b>
+            <li>no central group chats existed - limited group engagement</li>
+            <li>missing group excursions or events - no way to meet other buddies or form group connections / community
+              sense</li>
+            <li>own friend groups - interest loss after initial few meetings</li>
+          </ul>
+        </div>
+        <div class="experience-card">
+          <div class="card-title">Personal Takeaways</div>
+          <ul class="service-list">
+            <b>I wished I had tools to:</b>
+            <li>get in contact early on before the semester starts</li>
+            <li>matched by interest and course as well</li>
+            <li>with other buddy pairs or exchange students too - more free organized activity options</li>
+            <li>offer support without being the only point of contact</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CURRENT WEBSITE -->
+    <section class="section">
+      <div class="container web-grid">
+        <div>
+          <div class="small-headline">Current Website</div>
+          <h2 class="split-headline">
+            <div class="icon-box"><i class="ph ph-devices"></i></div>
+            <span class="headline-dark">What the</span>
+            <span class="headline-dark">application website currently</span>
+            <span class="headline-gradient">looks like.</span>
+          </h2>
+        </div>
+        <b>Only for locals (exchange students in application already): Term, Full Name, E-Mail, Gender, Age, Course
+          Information, Languages, Number of Buddy's, Countries of Origin Preferences, First Time as Buddy?</b>
+        <div class="web-image">
+          <img src="img/lmubuddy/website.jpg">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TARGET -->
+    <section class="section" id="target">
+      <div class="container target-grid">
+        <div class="target-cards">
+          <div class="small-headline">Target Group</div>
+          <h2 class="split-headline">
+            <div class="icon-box"><i class="ph ph-users-three"></i></div>
+            <span class="headline-dark">Who</span>
+            <span class="headline-gradient">this platform serves.</span>
+          </h2>
+          <div class="card">
+            <ul class="service-list">
+              <li><b>Primary Users:</b> Exchange students at LMU Munich looking for support, guidance, and local
+                connections</li>
+              <li><b>Secondary Users:</b> Local LMU students volunteering as buddies to support international peers</li>
+              <li><b>shared goals</b> of making new friends, exploring Munich and Bavaria, and building a diverse,
+                welcoming community</li>
+            </ul>
+          </div>
+          <div class="target-images">
+            <img src="img/lmubuddy/persona1.png">
+            <img src="img/lmubuddy/persona2.png">
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- PROTOTYPE -->
+
+    <section class="section alt" id="prototype">
+
+      <div class="container">
+
+        <div class="small-headline">App Prototype</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-device-mobile"></i></div>
+          <span class="headline-dark">Visualizing</span>
+          <span class="headline-gradient">the user experience.</span>
+        </h2>
+        <div class="prototype-grid">
+          <div class="prototype-phones">
+            <img src="img/skillswap/app1.png" class="phone phone1">
+            <img src="img/skillswap/app2.png" class="phone phone2">
+            <img src="img/skillswap/app3.png" class="phone phone3">
+          </div>
+          <div class="prototype-text">
+            <div class="prototype-card">
+              <div class="card-title">
+                Skill Exchange
+              </div>
+              <ul class="service-list">
+                <li>offers opportunity to <b>search and filter for skills</b> a users needs or wants to learn</li>
+                <li>creates <b>best peer to peer matches</b> for each search</li>
+                <li>allows users to <b>add their own skills</b> available to other users as teaching or service</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="prototype-grid">
+          <div class="prototype-text">
+            <div class="prototype-card">
+              <div class="card-title">
+                Community Projects
+              </div>
+              <ul class="service-list">
+                <li>Offers the opportunity to <b>connect as a group</b> while distributing different skills</li>
+                <li>Users can <b>join existing projects</b> using their own skills or <b>create their own</b> for
+                  others
+                  to partcipate in</li>
+              </ul>
+            </div>
+          </div>
+          <div class="prototype-phones">
+            <img src="img/skillswap/app1.png" class="phone phone1">
+            <img src="img/skillswap/app2.png" class="phone phone2">
+            <img src="img/skillswap/app3.png" class="phone phone3">
+          </div>
+        </div>
+        <div class="prototype-grid">
+          <div class="prototype-phones">
+            <img src="img/skillswap/app1.png" class="phone phone1">
+            <img src="img/skillswap/app2.png" class="phone phone2">
+            <img src="img/skillswap/app3.png" class="phone phone3">
+          </div>
+          <div class="prototype-text">
+            <div class="prototype-card">
+              <div class="card-title">
+                Profile
+              </div>
+              <ul class="service-list">
+                <li>created during Signup process =&gt; regulary updated</li>
+                <li>including own <b>Skills & Projects, Credits, Feedback</b> from other users & Rating Results</li>
+                <li><b>visible to all</b> other users</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="small-headline">Design Process</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-chart-line"></i></div>
+          <span class="headline-dark">Steps</span>
+          <span class="headline-gradient">behind the final product.</span>
+        </h2>
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="card-title">Research</div>
+            <ul>
+              <li>LMU Buddy Program Workflow Analysis</li>
+              <li>Short Interviews with other Participants</li>
+            </ul>
+          </div>
+          <div class="process-card">
+            <div class="card-title">Ideation</div>
+            <ul>
+              <li>Mindmap</li>
+              <li>Personas</li>
+              <li>Problem Statement</li>
+              <li>Goal</li>
+              <li>User Group</li>
+              <li>Solution Concept</li>
+            </ul>
+          </div>
+          <div class="process-card">
+            <div class="card-title">Wireframing</div>
+            <ul>
+              <li>Wireframes of Key Ideas</li>
+            </ul>
+          </div>
+          <div class="process-card">
+            <div class="card-title">Prototyping</div>
+            <ul>
+              <li>Logodesign</li>
+              <li>Low Fidelity Prototype</li>
+              <li>Mid Fidelity Prototype</li>
+              <li>High Fidelity Prototype</li>
+              <li>Interactive MVP of Key Features</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FUTURE -->
+    <section class="section alt" id="future">
+      <div class="container">
+        <div class="small-headline">Future Development</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-chart-line-up"></i></div>
+          <span class="headline-dark">How I will continue the</span>
+          <span class="headline-gradient">project in the future.</span>
+        </h2>
+        <div class="card">
+          <ul>
+            <li>User Testing with the final Prototype</li>
+            <li>Present to University for Feedback + Approval</li>
+            <li>App Implementation + AI Feature</li>
+            <li>Field Study with the final product</li>
+            <li>Implementation of adjustments</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer>
+    <section class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div class="footer-row">
+          <p class="footer-note">Thanks for stopping by.</p>
+          <div class="footer-links">
+            <a href="mailto:manikath22@gmail.com" class="footer-link">
+              <i class="ph ph-envelope-simple"></i>
+              <span>Email</span>
+            </a>
+            <a href="https://www.behance.net/katharimanicke" class="footer-link" target="_blank"
+              rel="noopener noreferrer">
+              <i class="ph ph-behance-logo"></i>
+              <span>Behance</span>
+            </a>
+            <a href="https://www.linkedin.com/in/katharina-m-b577282b3/?locale=de" class="footer-link" target="_blank"
+              rel="noopener noreferrer">
+              <i class="ph ph-linkedin-logo"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+        <div class="footer-row footer-row-bottom">
+          <p class="footer-copyline">© 2026 Katharina Manicke. All Rights Reserved.</p>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <script src="lmubuddy.js"></script>
+
+</body>
+
+</html>

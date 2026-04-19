@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>SkillSwap Case Study</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/sw-globals.css" />
+  <link rel="stylesheet" href="css/sw-components.css">
+  <link rel="stylesheet" href="css/sections/header.css" />
+  <link rel="stylesheet" href="css/sections/footer.css" />
+  <script defer src="https://unpkg.com/@phosphor-icons/web"></script>
+
+</head>
+
+<div class="cursor">
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+</div>
+
+<button class="back-top" id="backTop">
+  <i class="ph ph-arrow-up"></i>
+</button>
+
+<body>
+  <!--div id="loader">
+    <img src="img/MK.png" alt="loading logo">
+  </div-->
+
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="#" class="brand" aria-label="Homepage">
+        <div class="brand-icon">
+          <img src="img/MK.png" alt="Icon Personal Page" />
+        </div>
+        <span class="brand-name">Katharina Manicke</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#projects">Projects</a>
+        <a href="#about">About me</a>
+        <a href="#resume">Download Resume</a>
+      </nav>
+      <a href="mailto:manikath22@gmail.com" class="btn btn-primary">Contact Me</a>
+    </div>
+  </header>
+
+
+  <main>
+    <!-- Hero -->
+    <section class="section hero" id="top">
+      <div class="hero-grid">
+        <img src="img/skillswap.png">
+        <div>
+          <h1>
+            <span class="headline-dark">Skill</span>
+            <span class="headline-gradient">Swap.</span>
+          </h1>
+          <p>
+            A mobile application where students can
+            share, learn, and grow through skill exchange.
+          </p>
+          <div class="tag-row">
+            <span class="tag">February - June 2025</span>
+            <span class="tag">International Team</span>
+            <span class="tag">Group Project</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-nav">
+        <div class="nav-line"></div>
+        <button data-target="goal">Goal</button>
+        <button data-target="problem">Problem</button>
+        <button data-target="solution">Solution</button>
+        <button data-target="research">Research</button>
+        <button data-target="target">Users</button>
+        <button data-target="scenario">Scenario</button>
+        <button data-target="business">Business Model</button>
+        <button data-target="prototype">Prototyping</button>
+        <button data-target="process">Process</button>
+        <button data-target="contribution">Contribution</button>
+      </div>
+    </section>
+
+
+    <!-- GOAL -->
+
+    <section class="section  alt" id="goal">
+      <div class="container">
+        <div class="small-headline">Project Goal</div>
+        <h3 class="split-headline">
+          <div class="icon-box"><i class="ph ph-chart-line-up"></i></div>
+          <span class="headline-dark">Why</span>
+          <span class="headline-gradient">SkillSwap was created.</span>
+        </h3>
+        <p>
+          Students often want to learn new skills but lack accessible
+          ways to exchange knowledge with peers. SkillSwap provides
+          a platform that enables collaborative learning and skill
+          sharing among students.
+        </p>
+      </div>
+    </section>
+
+
+    <!-- PROBLEM -->
+
+    <section class="section" id="problem">
+      <div class="container">
+        <div class="small-headline">Problem Statement</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-warning-circle"></i></div>
+          <span class="headline-dark">Understanding</span>
+          <span class="headline-gradient">the learning gap.</span>
+        </h2>
+        <ul class="service-list">
+          <li>Void of free skill learning platforms</li>
+          <li>Void for peer to peer + community driven learning</li>
+          <li>Untapped knowledge within student community</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- SOLUTION -->
+
+    <section class="section  alt" id="solution">
+      <div class="container">
+        <div class="small-headline">Proposed Solution</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-check-fat"></i></div>
+          <span class="headline-dark">How</span>
+          <span class="headline-gradient">SkillSwap solves the problem.</span>
+        </h2>
+        <p>SkillSwap App allows students to offer skills, collect credits, and spend them on learning.</p>
+        <ul class="service-list">
+          <li>Collaboration spaces for group projects</li>
+          <li>Smart matching for best peer-to-peer connections</li>
+          <li>A non-monetary credit system for fair exchange</li>
+          <li>Safety & transparency via university email login and feedback system</li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- REFERENCE -->
+    <section class="section">
+      <div class="container ref-grid">
+        <div>
+          <div class="small-headline">Reference Products</div>
+          <h2 class="split-headline">
+            <div class="icon-box"><i class="ph ph-devices"></i></div>
+            <span class="headline-dark">Existing</span>
+            <span class="headline-gradient">inspiration platforms.</span>
+          </h2>
+        </div>
+        <div class="ref-image">
+          <img src="img/skillswap/reference.jpg">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- RESEARCH -->
+    <section class="section alt" id="research">
+      <div class="container">
+        <div class="small-headline">Literature Research</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-book-open-text"></i></div>
+          <span class="headline-dark">What</span>
+          <span class="headline-gradient">research reveals.</span>
+        </h2>
+        <div class="research-grid">
+          <div class="research-card">
+            <div class="card-title">Growing Interest in Platforms for Sharing Skills</div>
+            <ul class="service-list">
+              <li>58% of workers are eager to pick up new skills</li>
+              <li>87% of executives and workers say their workforce lacks certain abilities</li>
+            </ul>
+          </div>
+          <div class="research-card">
+            <div class="card-title">Peer-to-peer learning's rise</div>
+            <ul class="service-list">
+              <li>P2P more popular because individualized + affordable learning</li>
+              <li>72% of participants prefer collaborative learning over traditional approaches</li>
+            </ul>
+          </div>
+          <div class="research-card">
+            <div class="card-title">Demand for Affordable Learning Solutions</div>
+            <ul class="service-list">
+              <li>54% of workers would need substantial reskilling</li>
+              <li>only 30% have access to affordable training programs</li>
+            </ul>
+          </div>
+          <div class="research-card">
+            <div class="card-title">Student Demand for Skill Development</div>
+            <ul class="service-list">
+              <li>85% of college students think developing extracurricular skills is crucial</li>
+            </ul>
+          </div>
+          <div class="research-card">
+            <div class="card-title">More Interest in Lifelong Learning</div>
+            <ul class="service-list">
+              <li>fast changing job market → lifelong learning becoming more important</li>
+              <li>63% of workers believe they need continuous training</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TARGET -->
+    <section class="section" id="target">
+      <div class="container target-grid">
+        <div class="target-cards">
+          <div class="small-headline">Target Group</div>
+          <h2 class="split-headline">
+            <div class="icon-box"><i class="ph ph-users-three"></i></div>
+            <span class="headline-dark">Who</span>
+            <span class="headline-gradient">this platform serves.</span>
+          </h2>
+          <div class="card">
+            <div class="card-title">Diverse Skillset</div>
+            <p>
+              universities automatically offer a wide variety of academical skills
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Comfort Level IT</div>
+            <p>
+              ability to have videocalls + use the app without requiring (too much) additional help
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Limited Budget</div>
+            <p>
+              often similar limited income =&gt; paid learning is less accessible
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Culture & Language</div>
+            <p>
+              already very international community, similar English Skills
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-title">Motivation</div>
+            <p>
+              help with classes / career, productive free time, build connections
+            </p>
+          </div>
+        </div>
+        <div class="target-images">
+          <img src="img/skillswap/persona1.png">
+          <img src="img/skillswap/persona2.png">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- SCENARIO -->
+    <section class="section alt" id="scenario">
+      <div class="container ref-grid">
+        <div>
+          <div class="small-headline">Example Scenario</div>
+          <h2 class="split-headline">
+            <div class="icon-box"><i class="ph ph-users"></i></div>
+            <span class="headline-dark">How</span>
+            <span class="headline-gradient">students interact.</span>
+          </h2>
+        </div>
+        <div class="ref-image">
+          <img src="img/skillswap/scenario.png">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- BUSINESS -->
+    <section class="section" id="business">
+      <div class="container">
+        <div class="small-headline">Business Model</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-briefcase-metal"></i></div>
+          <span class="headline-dark">How</span>
+          <span class="headline-gradient">the platform sustains itself.</span>
+        </h2>
+        <div class="business-grid">
+          <div class="business-card">
+            <div class="card-title">Sponsoring</div>
+            <ul class="service-list">
+              <li>Sponsors / Partners</li>
+              <li>support (motivate their own students to app use)</li>
+              <li>companies interested in the idea - stronger knowledge of future employees + option to directly
+                contact
+                eligible students for job offers</li>
+              <li>government support (tax reduce)</li>
+              <li>Community & Crowd Funding</li>
+            </ul>
+          </div>
+          <div class="business-card">
+            <div class="card-title">Advertisment</div>
+            <ul class="service-list">
+              <li>financial support from those featured in the app</li>
+              <li>vouchers store (for users to spend their credits on app partners)</li>
+            </ul>
+          </div>
+          <div class="business-card">
+            <div class="card-title">Subscriptions</div>
+            <ul class="service-list">
+              <li>Premium Version (15$ per month) - no restrictions</li>
+              <li>Free Version</li>
+              <li>service fee for every exchange</li>
+              <li>exchange limit (per month)</li>
+              <li>skill offer limit (2 skills at once)</li>
+              <li>project participation limit (1 per month)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CREDITS -->
+    <section class="section alt" id="credits">
+      <div class="container">
+        <div class="small-headline">Credit System</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-coins"></i></div>
+          <span class="headline-dark">How</span>
+          <span class="headline-gradient">skill exchange works.</span>
+        </h2>
+        <div class="credit-grid">
+          <div class="credit-card">
+            <div class="card-title">Value of the non-monetary Credits</div>
+            <ul class="service-list">
+              <li>measurement of time + effort put into skills exchanges </li>
+              <li>Complexity of Skills (more credits for more advanced skills)</li>
+              <li>set by each user themselves (after suggested value of a skill)</li>
+            </ul>
+          </div>
+          <div class="credit-card">
+            <div class="card-title">Credit Calculation</div>
+            <ul class="service-list">
+              <li>Standard credit rate suggestions (based on basic - advanced skills, different skill levels)</li>
+              <li>users can use those or adjust them acc. to their estimation</li>
+              <li>personal negotiations possible (both parties have to agree!)</li>
+            </ul>
+          </div>
+          <div class="credit-card">
+            <div class="card-title">Earning Credits - Teaching</div>
+            <ul class="service-list">
+              <li>Offering to teach a skill =&gt; earning credits</li>
+              <li>Depending on what they teach, they earn a fixed amount of credits</li>
+            </ul>
+          </div>
+          <div class="credit-card">
+            <div class="card-title">Learning Credits - Spending / Using</div>
+            <ul class="service-list">
+              <li>Users spend credits to learn/use skills</li>
+              <li>session is confirmed =&gt; credit taken out</li>
+              <li>automatic amount check - only options that user has enough credits for are possible + shown</li>
+              <li>1. Video call validated by both sides =&gt; credits taken out</li>
+              <li>automatic amount check - no exchanges without enough credits</li>
+              <li>option to spend in voucher store on collaboration partners too</li>
+            </ul>
+          </div>
+          <div class="credit-card">
+            <div class="card-title">Verfication</div>
+            <ul class="service-list">
+              <li>session confirmed = credits taken from user A</li>
+              <li>both users confirm the successfully completed session = credit is added to user B</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FEEDBACK -->
+
+    <section class="section" id="feedback">
+      <div class="container">
+        <div class="small-headline">Expert Feedback</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-identification-badge"></i></div>
+          <span class="headline-dark">What Industry Experts</span>
+          <span class="headline-gradient">said about our work.</span>
+        </h2>
+        <div class="card">
+          <p>We presented our work to 8 design specialists from different industry sectors and found 2 final
+            problems:
+          </p>
+          <ul>
+            <li>“Not everyone CAN teach” =&gt; Choice if Service or Teaching and link/option to learn “How to teach”
+              by
+              extern sources</li>
+            <li>Cheating prevention? =&gt; responsible usage + Terms & Conditions</li>
+          </ul>
+        </div>
+        <div class="prototype-phones">
+          <img src="img/skillswap/app1.png" class="phone phone1">
+          <img src="img/skillswap/app3.png" class="phone phone3">
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PROTOTYPE -->
+    <section class="section alt" id="prototype">
+      <div class="container">
+        <div class="small-headline">App Prototype</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-device-mobile"></i></div>
+          <span class="headline-dark">Visualizing</span>
+          <span class="headline-gradient">the user experience.</span>
+        </h2>
+        <div class="prototype-grid">
+          <div class="prototype-phones">
+            <img src="img/skillswap/app1.png" class="phone phone1">
+            <img src="img/skillswap/app2.png" class="phone phone2">
+            <img src="img/skillswap/app3.png" class="phone phone3">
+          </div>
+          <div class="prototype-text">
+            <div class="prototype-card">
+              <div class="card-title">
+                Skill Exchange
+              </div>
+              <ul class="service-list">
+                <li>offers opportunity to <b>search and filter for skills</b> a users needs or wants to learn</li>
+                <li>creates <b>best peer to peer matches</b> for each search</li>
+                <li>allows users to <b>add their own skills</b> available to other users as teaching or service</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="prototype-grid">
+          <div class="prototype-text">
+            <div class="prototype-card">
+              <div class="card-title">
+                Community Projects
+              </div>
+              <ul class="service-list">
+                <li>Offers the opportunity to <b>connect as a group</b> while distributing different skills</li>
+                <li>Users can <b>join existing projects</b> using their own skills or <b>create their own</b> for
+                  others
+                  to partcipate in</li>
+              </ul>
+            </div>
+          </div>
+          <div class="prototype-phones">
+            <img src="img/skillswap/app1.png" class="phone phone1">
+            <img src="img/skillswap/app2.png" class="phone phone2">
+            <img src="img/skillswap/app3.png" class="phone phone3">
+          </div>
+        </div>
+        <div class="prototype-grid">
+          <div class="prototype-phones">
+            <img src="img/skillswap/app1.png" class="phone phone1">
+            <img src="img/skillswap/app2.png" class="phone phone2">
+            <img src="img/skillswap/app3.png" class="phone phone3">
+          </div>
+          <div class="prototype-text">
+            <div class="prototype-card">
+              <div class="card-title">
+                Profile
+              </div>
+              <ul class="service-list">
+                <li>created during Signup process =&gt; regulary updated</li>
+                <li>including own <b>Skills & Projects, Credits, Feedback</b> from other users & Rating Results</li>
+                <li><b>visible to all</b> other users</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PROCESS -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="small-headline">Design Process</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-chart-line"></i></div>
+          <span class="headline-dark">Steps</span>
+          <span class="headline-gradient">behind the product.</span>
+        </h2>
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="card-title">Research & Ideation</div>
+            <ul>
+              <li>Mindmaps on Miro</li>
+              <li>Literature Research</li>
+            </ul>
+          </div>
+          <div class="process-card">
+            <div class="card-title">Iteration</div>
+            <ul>
+              <li>Problem Statement</li>
+              <li>Goal</li>
+              <li>User & Business Assumptions</li>
+              <li>Credit System & Business Model</li>
+              <li>Hypothesis & Subhypothesis</li>
+              <li>User Group & Personas</li>
+              <li>Example Scenario</li>
+              <li>Reference Products</li>
+              <li>Solution Concept</li>
+              <li>App Flow</li>
+            </ul>
+          </div>
+          <div class="process-card">
+            <div class="card-title">Prototyping</div>
+            <ul>
+              <li>Sketches</li>
+              <li>Wireframes</li>
+              <li>Low Fidelity Prototype</li>
+              <li>Mid Fidelity Prototype</li>
+              <li>High Fidelity Prototype</li>
+              <li>Interactive MVP of Key Features</li>
+            </ul>
+          </div>
+          <div class="process-card">
+            <div class="card-title">Testing</div>
+            <ul>
+              <li>LowFi: Usability Testing</li>
+              <li>HighFi: Field Study incl. Interviews</li>
+              <li>Heuristic Evaluation</li>
+              <li>Thematic Analysis</li>
+              <li>Expert Feedback</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CONTRIBUTION -->
+
+    <section class="section alt" id="contribution">
+      <div class="container">
+        <div class="small-headline">My Contribution</div>
+        <h2 class="split-headline">
+          <div class="icon-box"><i class="ph ph-user-circle"></i></div>
+          <span class="headline-dark">My</span>
+          <span class="headline-gradient">role in the project.</span>
+        </h2>
+        <div class="card">
+          <ul>
+            <li>Persona Creation & Scenario Design</li>
+            <li>Main Designer for Figma Prototyping (Wireframes, High Fidelity (+Updates), MVP)</li>
+            <li>Usability Testing, Field Study & Thematic Analysis</li>
+            <li>Video Presentation Slides & Editing</li>
+            <li>Part of Group Effort: Problem Statement, User & Business Assumptions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <footer>
+    <section class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div class="footer-row">
+          <p class="footer-note">Thanks for stopping by.</p>
+          <div class="footer-links">
+            <a href="mailto:manikath22@gmail.com" class="footer-link">
+              <i class="ph ph-envelope-simple"></i>
+              <span>Email</span>
+            </a>
+            <a href="https://www.behance.net/katharimanicke" class="footer-link" target="_blank"
+              rel="noopener noreferrer">
+              <i class="ph ph-behance-logo"></i>
+              <span>Behance</span>
+            </a>
+            <a href="https://www.linkedin.com/in/katharina-m-b577282b3/?locale=de" class="footer-link" target="_blank"
+              rel="noopener noreferrer">
+              <i class="ph ph-linkedin-logo"></i>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+        </div>
+        <div class="footer-row footer-row-bottom">
+          <p class="footer-copyline">© 2026 Katharina Manicke. All Rights Reserved.</p>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <script src="skillswap.js"></script>
+
+</body>
+
+</html>

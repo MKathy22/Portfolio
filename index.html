@@ -179,7 +179,7 @@
     }
     @media (max-width: 700px) {
       .landing-inner { grid-template-columns: 1fr; }
-      .landing-hero-img { max-width: 100%; width: 100%; border-radius: 12px; order: 2; align-self: center; transform: none; }
+      .landing-hero-img { display: none; }
       .landing-content { order: 1; }
     }
     .landing-eye { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; font-weight: 600; display: flex; align-items: center; gap: 13px; opacity: 0; animation: fadeUp .8s .45s ease forwards; }
@@ -1061,6 +1061,13 @@
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
+
+    if (!matchMedia('(hover:hover)').matches) {
+      const cardIo = new IntersectionObserver(entries => {
+        entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
+      }, {threshold: 0.4});
+      document.querySelectorAll('.project-item, .svc-card, .tl-item, .testi-card').forEach(el => cardIo.observe(el));
+    }
 
     /* BACK-BUTTON: instant scroll restoration, no smooth animation */
     window.addEventListener('pageshow', () => {

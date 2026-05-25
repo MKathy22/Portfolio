@@ -238,5 +238,10 @@ li::before { content: ''; display: inline-block; width: 6px; height: 6px; min-wi
 /* ── HERO BASE ────────────────────────────────────────────────────────────── */
 body > header.hero-section { margin-top: var(--hdr-h); }
 
+/* ── SCROLL-TRIGGERED IN-VIEW (touch devices) ─────────────────────────────── */
+.card.in-view::after, .process-card.in-view::after, .step-item.in-view::after { width: 100% !important; }
+.card.in-view .sec-h4 { color: var(--accent); }
+.process-card.in-view h4 { color: var(--accent); }
+
 /* ── UTIL ─────────────────────────────────────────────────────────────────── */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }

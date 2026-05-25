@@ -630,12 +630,6 @@
       padding: 18px 22px 22px;
     }
 
-    /* Scroll-triggered in-view activation for touch */
-    .research-card.in-view::after, .pillar.in-view::after,
-    .result-card.in-view::after, .problem-card.in-view::after { width: 100% !important; }
-    .research-card.in-view .sec-h4, .result-card.in-view .sec-h4,
-    .problem-card.in-view .sec-h4 { color: var(--accent); }
-    .pillar.in-view h4 { color: var(--accent); }
   </style>
 </head>
 
@@ -1355,12 +1349,6 @@
     overlay.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
-    if (!matchMedia('(hover:hover)').matches) {
-      const cardIo = new IntersectionObserver(entries => {
-        entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
-      }, {threshold: 0.4});
-      document.querySelectorAll('.research-card, .pillar, .result-card, .problem-card').forEach(el => cardIo.observe(el));
-    }
   </script>
 
 </body>

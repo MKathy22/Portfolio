@@ -329,14 +329,6 @@
     .ls-icon { background: #24664B; }
     .ls-icon img { filter: none; }
 
-    /* Scroll-triggered in-view activation for touch */
-    .card.in-view::after, .stat-card.in-view::after, .user-card.in-view::after,
-    .prob-card.in-view::after, .mvp-card-inner.in-view::after,
-    .process-card.in-view::after, .contrib-item.in-view::after { width: 100% !important; }
-    .card.in-view .sec-h4 { color: var(--accent); }
-    .stat-card.in-view .stat-h { color: var(--accent); }
-    .prob-card.in-view h4, .process-card.in-view h4 { color: var(--accent); }
-    .mvp-card-inner.in-view .sec-h3 { color: var(--accent); }
   </style>
 </head>
 
@@ -988,12 +980,6 @@
       updatePlayback();
     })();
 
-    if (!matchMedia('(hover:hover)').matches) {
-      const cardIo = new IntersectionObserver(entries => {
-        entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
-      }, {threshold: 0.4});
-      document.querySelectorAll('.card, .stat-card, .user-card, .prob-card, .mvp-card-inner, .process-card, .contrib-item').forEach(el => cardIo.observe(el));
-    }
   </script>
 </body>
 </html>

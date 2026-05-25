@@ -1518,13 +1518,6 @@
       }
     }
 
-    /* Scroll-triggered in-view activation for touch */
-    .card.in-view::after, .stat-card.in-view::after, .impact-card.in-view::after,
-    .learn-card.in-view::after, .process-card.in-view::after,
-    .prob-card.in-view::after, .user-card.in-view::after { width: 100% !important; }
-    .card.in-view .sec-h4, .learn-card.in-view .sec-h4 { color: var(--accent); }
-    .stat-card.in-view .stat-h, .impact-card.in-view .stat-h { color: var(--accent); }
-    .process-card.in-view h4, .prob-card.in-view h4 { color: var(--accent); }
   </style>
 </head>
 
@@ -2291,12 +2284,6 @@
 
     setATab(0, false);
 
-    if (!matchMedia('(hover:hover)').matches) {
-      const cardIo = new IntersectionObserver(entries => {
-        entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
-      }, {threshold: 0.4});
-      document.querySelectorAll('.card, .stat-card, .impact-card, .learn-card, .process-card, .prob-card, .user-card').forEach(el => cardIo.observe(el));
-    }
   </script>
 </body>
 

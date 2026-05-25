@@ -496,16 +496,6 @@
     @media (hover: none) and (max-width: 700px) {
       .proj-thumb img { filter: saturate(1) !important; transition: none !important; }
     }
-    /* Scroll-triggered card activation for touch — use .in-view class */
-    .project-item.in-view, .svc-card.in-view, .tl-item.in-view,
-    .testi-card.in-view {
-      background: rgba(139,35,72,.05);
-    }
-    .project-item.in-view::after, .svc-card.in-view::after,
-    .tl-item.in-view::after,
-    .testi-card.in-view::after { width: 100% !important; }
-    .project-item.in-view .proj-title, .svc-card.in-view .svc-title,
-    .tl-item.in-view .tl-body h4 { color: var(--accent); }
   </style>
 </head>
 
@@ -1061,13 +1051,6 @@
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
     });
-
-    if (!matchMedia('(hover:hover)').matches) {
-      const cardIo = new IntersectionObserver(entries => {
-        entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
-      }, {threshold: 0.4});
-      document.querySelectorAll('.project-item, .svc-card, .tl-item, .testi-card').forEach(el => cardIo.observe(el));
-    }
 
     /* BACK-BUTTON: instant scroll restoration, no smooth animation */
     window.addEventListener('pageshow', () => {

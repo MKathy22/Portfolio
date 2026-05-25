@@ -478,12 +478,6 @@
     overlay.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
-    if (!matchMedia('(hover:hover)').matches) {
-      const cardIo = new IntersectionObserver(entries => {
-        entries.forEach(e => e.target.classList.toggle('in-view', e.isIntersecting));
-      }, {threshold: 0.4});
-      document.querySelectorAll('.card, .process-card, .step-item').forEach(el => cardIo.observe(el));
-    }
   </script>
 
 </body>

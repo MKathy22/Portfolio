@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ströer SE & Co. KGaA – Visual and motion design for digital out-of-home media. Work by Katharina Manicke.">
+  <title>K.Manicke - Stroeer</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" href="img/Portrait2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+    :root {
+      --accent:       #d44e00;
+      --accent-vivid: #f5640a;
+      --accent-dim:   rgba(212,78,0,.12);
+      --accent-pale:  #fff3ec;
+      --grad:         linear-gradient(135deg, #7a2e00 0%, #d44e00 100%);
+      --grad-v:       linear-gradient(180deg, #7a2e00 0%, #d44e00 100%);
+      --grad-h:       linear-gradient(90deg, #7a2e00 0%, #d44e00 100%);
+      --hdr-bg:       #160800;
+      --radius-btn:   100px;
+      --font:         'Open Sans', system-ui, sans-serif;
+      --max:          1200px;
+      --gutter:       clamp(20px, 5vw, 80px);
+      --bg-a:         #ffffff;
+      --bg-b:         #f5f5f7;
+      --text:         #1c1410;
+      --text-mid:     #2a2020;
+      --text-muted:   #666060;
+      --border:       rgba(0,0,0,.09);
+      --card-bg:      #ffffff;
+      --shadow:       0 2px 20px rgba(0,0,0,.07);
+      --shadow-card:  0 4px 28px rgba(0,0,0,.10);
+      --hdr-h:        68px;
+      --tag-h:        44px;
+    }
+
+    /* Image cards: 4:3 photo on top, white text area below */
+    .img-card { padding: 0; }
+    .img-card-photo {
+      aspect-ratio: 4 / 3;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    .img-card-photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 45%;
+      background: linear-gradient(to top, var(--card-bg) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .img-card-body { padding: 20px 24px 24px; }
+
+    /* ── HERO — split: white left, orange right ─────────────────────────────── */
+    .hero-section {
+      margin-top: var(--hdr-h);
+      min-height: calc(100svh - var(--hdr-h));
+      background: var(--bg-a);
+      overflow: hidden;
+      padding: 0 var(--gutter);
+      display: flex;
+      align-items: stretch;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      align-items: stretch;
+    }
+    @media(max-width:860px) { .hero-inner { grid-template-columns: 1fr; } }
+
+    .hero-text {
+      display: flex; flex-direction: column; gap: 1.25rem;
+      padding: clamp(2rem,5vw,4rem) 2.5rem clamp(2rem,5vw,4rem) 0;
+      justify-content: center;
+      opacity: 0;
+      animation: fadeUp .9s .4s ease forwards;
+    }
+    .hero-eye {
+      font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--text-muted); font-weight: 500;
+      display: flex; align-items: center; gap: 13px;
+    }
+    .hero-eye::before { content: ''; width: 28px; height: 1.5px; background: var(--accent); border-radius: 2px; opacity: .35; }
+    .hero-title { color: var(--text); }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 15px; color: var(--text-muted); line-height: 1.82; font-weight: 400; max-width: 420px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .hero-badge {
+      font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+      border: 1px solid var(--accent-dim); padding: 4px 12px;
+      border-radius: var(--radius-btn); font-weight: 600;
+      display: inline-flex; color: var(--accent);
+    }
+    .hero-badge-filled { background: var(--accent); border-color: transparent; color: #fff; }
+
+    .hero-mock { width: 100%; align-self: center; overflow: hidden; opacity: 0; animation: fadeUp .9s .65s ease forwards; }
+    .hero-mock img { width: 100%; height: auto; display: block; }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOADING SCREEN -->
+  <div id="loading-screen" aria-hidden="true">
+    <div class="ls-icon"><img src="img/logos/STROEER.png" alt=""></div>
+  </div>
+
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- FLOATING ACTIONS -->
+  <div class="fab-wrap" aria-label="Quick actions">
+    <button class="fab" id="backTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg>
+    </button>
+  </div>
+
+  <!-- DRAWER -->
+  <div class="drawer-overlay" id="dOverlay" aria-hidden="true"></div>
+  <nav class="side-drawer" id="sDrawer" aria-label="Mobile navigation" aria-hidden="true">
+    <button class="drawer-x" id="dClose" aria-label="Close menu">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <a href="index.html#projects">Projects <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    <a href="index.html#about">About Me <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+    <a href="files/CV Katharina Manicke.pdf" download>Download CV <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a>
+    <a href="https://www.linkedin.com/in/katharina-m-b577282b3/?locale=en_US" target="_blank" rel="noopener noreferrer">LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <a href="mailto:manikath22@gmail.com" class="drawer-contact-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Contact Me</a>
+  </nav>
+
+  <!-- MAIN NAV -->
+  <header class="site-header" role="banner">
+    <div class="navbar">
+      <a href="index.html" class="brand" aria-label="Katharina Manicke – Home">
+        <img class="brand-mono" src="img/Portrait2.png" alt="">
+        <span>Katharina Manicke</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html#projects">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+          Projects
+        </a>
+        <a href="index.html#about">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+          About
+        </a>
+        <a href="files/CV Katharina Manicke.pdf" download>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+      </nav>
+      <div class="hdr-right">
+        <a href="https://www.linkedin.com/in/katharina-m-b577282b3/?locale=en_US" target="_blank" rel="noopener noreferrer" class="hdr-linkedin" aria-label="Katharina's LinkedIn profile">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          <span class="li-label">LinkedIn</span>
+        </a>
+        <a href="mailto:manikath22@gmail.com" class="btn-contact" aria-label="Contact Katharina">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Contact Me
+        </a>
+        <a href="mailto:manikath22@gmail.com" class="hdr-contact-icon" aria-label="Send email">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sDrawer">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <header class="hero-section" id="top" aria-label="Project introduction">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-eye" aria-hidden="true">Working Student · Visual & Motion Design</p>
+        <h1 class="hero-title">Designed Content<br>for <em>Millions of Screens.</em></h1>
+        <p class="hero-sub">Created visual and motion design for digital out-of-home media at Ströer SE & Co. KGaA — one of Germany's largest out-of-home advertising companies, with public displays reaching millions of people daily.</p>
+        <div class="hero-meta" role="list" aria-label="Project metadata">
+          <span class="hero-badge" role="listitem">Mar 2022 – Jan 2025</span>
+          <span class="hero-badge" role="listitem">Working Student</span>
+          <span class="hero-badge" role="listitem">Visual Design</span>
+          <span class="hero-badge" role="listitem">Motion Design</span>
+          <a href="https://www.stroeer.de/" target="_blank" rel="noopener noreferrer" class="hero-badge" role="listitem">Ströer SE &amp; Co. KGaA</a>
+          <span class="hero-badge hero-badge-filled" role="listitem">NDA Protected</span>
+        </div>
+      </div>
+      <div class="hero-mock" role="img" aria-label="Ströer digital out-of-home display work">
+        <picture>
+          <source media="(max-width: 860px)" srcset="img/stroeer/Stroeer.png">
+          <img src="img/stroeer/Stroeer-HF.png" alt="Ströer SE — visual and motion design for digital out-of-home media">
+        </picture>
+      </div>
+    </div>
+  </header>
+
+  <!-- TAG NAV -->
+  <nav id="tag-nav" aria-label="Page sections">
+    <div class="tag-nav-inner">
+      <a href="#overview"><span>Overview</span></a>
+      <a href="#context"><span>Context</span></a>
+      <a href="#scale"><span>Scale</span></a>
+      <a href="#challenge"><span>Design Challenge</span></a>
+      <a href="#solution"><span>Solution</span></a>
+      <a href="#takeaways"><span>Key Takeaways</span></a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- OVERVIEW -->
+    <section id="overview" style="background:var(--bg-b);" aria-labelledby="overview-h">
+      <div class="inner">
+        <div class="two-col">
+          <div>
+            <div class="sec-label reveal">Overview</div>
+            <h2 class="sec-h2 reveal" id="overview-h">Out-of-home media at<br>national scale.</h2>
+            <p class="sec-text reveal" style="margin-top:.5rem;">Ströer SE & Co. KGaA is one of Germany's largest outdoor advertising companies, operating digital public displays across high-traffic locations nationwide — from train stations and airports to city centres and shopping malls.</p>
+            <p class="sec-text reveal" style="margin-top:1rem; max-width:480px;">As a working student, I created content for these screens — designing for the unique constraints of public display environments where attention is fleeting and visual impact must be instant.</p>
+          </div>
+          <div>
+            <div class="status-banner reveal" style="margin-bottom:1.5rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <p><strong>NDA applies.</strong> All design work produced during this role cannot be shared publicly. I'm happy to discuss the design process, tools, and approach in a direct conversation.</p>
+            </div>
+            <div class="card reveal">
+              <div class="sec-h4">My Role</div>
+              <ul style="margin-top:.5rem;">
+                <li>Created content for digital out-of-home (DOOH) campaigns</li>
+                <li>Designed motion and animated content for public displays</li>
+                <li>Designed content and customer advertisements</li>
+                <li>Worked within tight display constraints</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTEXT -->
+    <section id="context" style="background:var(--bg-a);" aria-labelledby="context-h">
+      <div class="inner">
+        <div class="sec-label reveal">Context</div>
+        <h2 class="sec-h2 reveal" id="context-h">Every day, millions of people walk past the screens.</h2>
+        <p class="sec-text reveal">At Ströer, I worked on Infoscreen, one of Germany's largest digital out-of-home (DOOH) networks.</p>
+
+        <div class="cards-grid-3 reveal" style="margin-top:1.75rem;">
+          <div class="card img-card">
+            <div class="img-card-photo" style="background-image:url('img/stroeer/train.png');"></div>
+            <div class="img-card-body">
+              <div class="sec-h4">Transit</div>
+              <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Train stations, subway platforms, and major transit hubs across Germany.</p>
+            </div>
+          </div>
+          <div class="card img-card">
+            <div class="img-card-photo" style="background-image:url('img/stroeer/mall.png');"></div>
+            <div class="img-card-body">
+              <div class="sec-h4">Retail</div>
+              <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Shopping malls, retail spaces, and high-frequency consumer environments.</p>
+            </div>
+          </div>
+          <div class="card img-card">
+            <div class="img-card-photo" style="background-image:url('img/stroeer/street.png');"></div>
+            <div class="img-card-body">
+              <div class="sec-h4">Urban</div>
+              <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">City streets and public spaces blending information and advertising into everyday urban life.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCALE -->
+    <section id="scale" style="background:var(--bg-b);" aria-labelledby="scale-h">
+      <div class="inner">
+        <div class="sec-label reveal">Scale and impact</div>
+        <h2 class="sec-h2 reveal" id="scale-h">Communication on infrastructure-level .</h2>
+        <p class="sec-text reveal">Deployed across nationwide public video networks, my work contributed to campaigns that delivered hundreds of millions of weekly impressions. Content became part of everyday urban life.</p>
+
+        <div class="reveal" style="margin-top:1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.75rem;max-width:720px;">
+          <div style="background:var(--accent-pale);border:1px solid var(--accent-dim);border-radius:12px;padding:1rem 1.25rem;">
+            <div style="font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.3rem;">80%</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.5;">reach of the German population via DOOH</div>
+          </div>
+          <div style="background:var(--accent-pale);border:1px solid var(--accent-dim);border-radius:12px;padding:1rem 1.25rem;">
+            <div style="font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.3rem;">500M+</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.5;">ad impressions per week in public spaces</div>
+          </div>
+          <div style="background:var(--accent-pale);border:1px solid var(--accent-dim);border-radius:12px;padding:1rem 1.25rem;">
+            <div style="font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.3rem;">19+</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.5;">cities with thousands of screens nationwide</div>
+          </div>
+          <div style="background:var(--accent-pale);border:1px solid var(--accent-dim);border-radius:12px;padding:1rem 1.25rem;">
+            <div style="font-size:1.7rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.3rem;">Bn+</div>
+            <div style="font-size:12px;color:var(--text-muted);line-height:1.5;">weekly contacts across transit and retail</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGN CHALLENGE -->
+    <section id="challenge" style="background:var(--bg-a);" aria-labelledby="challenge-h">
+      <div class="inner">
+        <div class="sec-label reveal">Design Challenge</div>
+        <h2 class="sec-h2 reveal" id="challenge-h">Three seconds. No replay. No zoom.</h2>
+        <p class="sec-text reveal">Designing for Infoscreen meant designing for moving audiences, physical environments, and system-level deployment — all at once.</p>
+
+        <div class="cards-grid-4 reveal">
+          <div class="card">
+            <div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="sec-h4">Seconds of Attention</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">People are walking, distracted, checking trains. Messages must land in 3–10 seconds — no second chances.</p>
+          </div>
+          <div class="card">
+            <div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div class="sec-h4">Moving Audiences</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Unlike mobile: no pause, no replay, no sound. Design must be instantly readable and self-explanatory.</p>
+          </div>
+          <div class="card">
+            <div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+            <div class="sec-h4">Physical Environments</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Screens exist in bright daylight, underground stations, and at long viewing distances. High contrast, bold typography, and clear motion are non-negotiable.</p>
+          </div>
+          <div class="card">
+            <div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg></div>
+            <div class="sec-h4">System-level Deployment</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Content runs across thousands of screens in different formats and placements. Design must scale as a flexible visual system, not a one-off asset.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOLUTION -->
+    <section id="solution" style="background:var(--bg-b);" aria-labelledby="solution-h">
+      <div class="inner">
+        <div class="sec-label reveal">Design Solutions</div>
+        <h2 class="sec-h2 reveal" id="solution-h">Visual systems built to land instantly.</h2>
+        <p class="sec-text reveal">DOOH content had unique design constraints. Audiences in motion, short exposure and high-stimulus environments. Effective design there was about visual hierarchy, immediate legibility, and motion that guided rather than distracted.</p>
+
+        <div class="cards-grid-3 reveal" style="margin-top:1.75rem;">
+          <div class="card">
+            <div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="21" y1="6" x2="3" y2="6"/><line x1="15" y1="12" x2="3" y2="12"/><line x1="17" y1="18" x2="3" y2="18"/></svg></div>
+            <div class="sec-h4">Hierarchy First</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Created layouts where every message landed in under 3 seconds — large, bold typography, high contrast, and motion that directed attention rather than decorated.</p>
+          </div>
+          <div class="card">
+            <div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
+            <div class="sec-h4">Loop-based Storytelling</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Designed motion sequences that communicated within 5–15 second loops, with every frame working as an entry point for someone just walking up.</p>
+          </div>
+          <div class="card">
+            <div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div>
+            <div class="sec-h4">System Thinking</div>
+            <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Adapted campaign materials across portrait and landscape formats, screen sizes, and varying dwell times — from transit platforms to shopping malls.</p>
+          </div>
+        </div>
+
+        <div class="reflection-box reveal" style="margin-top:2rem;">
+          <div class="rfl-label">Design Principle</div>
+          <p>I treated every design like a one-second test: <em>Can someone understand this while walking past?</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY TAKEAWAYS -->
+    <section id="takeaways" style="background:var(--bg-a);" aria-labelledby="takeaways-h">
+      <div class="inner">
+        <div class="sec-label reveal">Key Takeaways</div>
+        <h2 class="sec-h2 reveal" id="takeaways-h">What this role taught me about designing at scale.</h2>
+
+        <div class="cards-grid-3 reveal" style="margin-top:1.5rem;">
+          <div class="card" style="display:flex;gap:1.25rem;align-items:center">
+            <div style="font-size:2.2rem;font-weight:700;color:var(--accent);line-height:1;min-width:2.4rem;flex-shrink:0">01</div>
+            <div>
+              <div class="sec-h4">Design as Infrastructure</div>
+              <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Design is not just pixels — it can be infrastructure. Constraints (time, motion, environment) are what drive clarity.</p>
+            </div>
+          </div>
+          <div class="card" style="display:flex;gap:1.25rem;align-items:center">
+            <div style="font-size:2.2rem;font-weight:700;color:var(--accent);line-height:1;min-width:2.4rem;flex-shrink:0">02</div>
+            <div>
+              <div class="sec-h4">Mass Audience, Specific Message</div>
+              <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">The audience is essentially "everyone", yet engagement happens in fleeting, situational moments. Strong design communicates clearly to specific mindsets within a mass audience.</p>
+            </div>
+          </div>
+          <div class="card" style="display:flex;gap:1.25rem;align-items:center">
+            <div style="font-size:2.2rem;font-weight:700;color:var(--accent);line-height:1;min-width:2.4rem;flex-shrink:0">03</div>
+            <div>
+              <div class="sec-h4">Clarity Over Completeness</div>
+              <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Not every design has to work for everyone — and in public space, it can't. The best public design doesn't try to please all; it communicates one thing, instantly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer" id="contact" role="contentinfo" aria-labelledby="footer-h">
+    <section class="footer-cta">
+      <div class="footer-cta-inner">
+        <h2 class="footer-h2" id="footer-h">Let's connect.</h2>
+        <p class="footer-sub">I'd love to hear from you.</p>
+      </div>
+    </section>
+    <section class="footer-bot" aria-label="Footer links">
+      <div class="footer-bot-inner">
+        <div class="footer-bot-row">
+          <p class="footer-copy">Thanks for stopping by.</p>
+          <nav class="footer-links" aria-label="Social links">
+            <a href="mailto:manikath22@gmail.com" class="footer-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Email
+            </a>
+            <a href="https://www.linkedin.com/in/katharina-m-b577282b3/?locale=de" target="_blank" rel="noopener noreferrer" class="footer-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </nav>
+        </div>
+        <div class="footer-bot-row">
+          <p class="footer-copy">© 2026 Katharina Manicke. All Rights Reserved.</p>
+        </div>
+      </div>
+    </section>
+  </footer>
+
+  <script>
+    /* LOADING SCREEN — skip on back/forward navigation */
+    (function () {
+      const ls = document.getElementById('loading-screen');
+      const nav = performance.getEntriesByType('navigation')[0];
+      if (nav && nav.type === 'back_forward') {
+        ls.classList.add('hidden');
+      } else {
+        window.addEventListener('load', () => {
+          setTimeout(() => ls.classList.add('hidden'), 300);
+        });
+      }
+    })();
+
+    /* BACK-BUTTON: instant scroll restoration, no smooth animation */
+    window.addEventListener('pageshow', () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        document.documentElement.style.scrollBehavior = '';
+      }));
+    });
+
+    /* REVEAL */
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    /* FAB BACK-TO-TOP */
+    const fab = document.getElementById('backTop');
+    window.addEventListener('scroll', () => { fab.classList.toggle('on', window.scrollY > 300); }, { passive: true });
+
+    /* MOBILE DRAWER */
+    const menuBtn = document.getElementById('menuBtn');
+    const drawer  = document.getElementById('sDrawer');
+    const overlay = document.getElementById('dOverlay');
+    const dClose  = document.getElementById('dClose');
+    function openDrawer()  { drawer.classList.add('on'); overlay.classList.add('on'); drawer.removeAttribute('aria-hidden'); menuBtn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+    function closeDrawer() { drawer.classList.remove('on'); overlay.classList.remove('on'); drawer.setAttribute('aria-hidden','true'); menuBtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+    menuBtn.addEventListener('click', openDrawer);
+    dClose.addEventListener('click', closeDrawer);
+    overlay.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+  </script>
+
+</body>
+</html>

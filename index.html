@@ -496,6 +496,13 @@
     @media (hover: none) and (max-width: 700px) {
       .proj-thumb img { filter: saturate(1) !important; transition: none !important; }
     }
+    /* Force light mode — keep backgrounds/text light even when OS is in dark mode */
+    @media (prefers-color-scheme: dark) {
+      :root { color-scheme: light; }
+      html, body { background-color: var(--bg-a); color: var(--text); }
+      .company-section { background-color: var(--bg-b); }
+      .card, .process-card, .step-item, .svc-card, .hob-card { background-color: #ffffff; }
+    }
   </style>
 </head>
 

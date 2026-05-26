@@ -7,12 +7,24 @@
  * and should also be defined in each :root.
  */
 
+/* ── COLOR SCHEME — light mode only, no dark mode support ─────────────────── */
+:root { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  /* Explicitly keep light mode even when OS/browser is in dark mode */
+  :root { color-scheme: light; }
+  html, body { background-color: var(--bg-a, #ffffff); color: var(--text, #1c1410); }
+  .card, .process-card, .step-item { background-color: var(--card-bg, #ffffff); }
+  .reflection-box, .status-banner { background-color: var(--accent-pale, #f5f0ff); }
+  .quote-section { background-color: var(--bg-a, #ffffff); }
+}
+
 /* ── RESET ────────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: default; }
 a, button, [role="button"], label, select { cursor: pointer; }
 
 /* ── BASE ─────────────────────────────────────────────────────────────────── */
 html {
+  color-scheme: light;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--hdr-h) + var(--tag-h) + 8px);
 }

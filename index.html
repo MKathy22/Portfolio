@@ -101,7 +101,7 @@
     .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
     .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-    @media (max-width: 960px) { .nav-links { display: none; } .btn-contact { display: none; } .menu-btn { display: flex; } .navbar { grid-template-columns: 1fr auto; } }
+    @media (max-width: 1100px) { .nav-links { display: none; } .btn-contact { display: none; } .menu-btn { display: flex; } .navbar { grid-template-columns: 1fr auto; } }
 
     /* DRAWER */
     .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 590; opacity: 0; pointer-events: none; transition: opacity .4s; }
@@ -133,7 +133,7 @@
     .btn-see-more.open svg:last-child { transform: rotate(180deg); }
 
     /* LINKEDIN HEADER BTN */
-    @media (max-width: 960px) { .hdr-linkedin { display: none; } }
+    @media (max-width: 1100px) { .hdr-linkedin { display: none; } }
     .hdr-linkedin { padding: 11px 14px; gap: 0; transition: padding .3s ease, gap .3s ease, color .2s, border-color .2s, background .2s; }
     .hdr-linkedin .li-label { max-width: 0; overflow: hidden; opacity: 0; white-space: nowrap; transition: max-width .3s ease, opacity .25s ease; }
     .hdr-linkedin:hover { padding: 11px 20px 11px 16px; gap: 7px; }
@@ -145,7 +145,7 @@
     .hdr-contact-icon { display: none; width: 40px; height: 40px; border-radius: 50%; background: var(--grad); color: #fff; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; box-shadow: 0 3px 10px rgba(0,0,0,.18); transition: filter .2s, transform .2s; }
     .hdr-contact-icon:hover { filter: brightness(1.12); transform: translateY(-1px); }
     .hdr-contact-icon:focus-visible { outline: 2px solid var(--accent-vivid); outline-offset: 3px; }
-    @media (max-width: 960px) { .hdr-contact-icon { display: flex; } }
+    @media (max-width: 1100px) { .hdr-contact-icon { display: flex; } }
 
     /* REVEAL */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .72s ease, transform .72s ease; }

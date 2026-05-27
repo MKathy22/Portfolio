@@ -436,8 +436,9 @@
       position: sticky;
       top: var(--hdr-h);
       z-index: 399;
-      background: var(--hdr-bg);
-      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      background: #fff;
+      border-bottom: 1px solid rgba(0, 0, 0, .08);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, .06);
       padding: 0 var(--gutter);
     }
 
@@ -462,12 +463,14 @@
       letter-spacing: .12em;
       text-transform: uppercase;
       font-weight: 500;
-      color: #f5f0eb;
+      color: var(--text-mid);
       text-decoration: none;
       transition: color .2s;
       white-space: nowrap;
       position: relative;
     }
+
+    .tag-nav-inner a:hover { color: var(--accent); }
 
     .tag-nav-inner a::after {
       display: none;

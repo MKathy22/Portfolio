@@ -104,8 +104,9 @@
     /* ══ TAG NAV — always visible, wraps to new line when narrow ══ */
     #tag-nav {
       position: sticky; top: var(--hdr-h); z-index: 399;
-      background: var(--hdr-bg);
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 2px 16px rgba(0,0,0,.06);
       padding: 0 var(--gutter);
     }
     #tag-nav.hide { display: block; }
@@ -120,9 +121,10 @@
       min-height: 44px;
       padding: 0 10px;
       font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500;
-      color: #f5f0eb; text-decoration: none;
+      color: var(--text-mid); text-decoration: none;
       transition: color .2s; white-space: nowrap; position: relative;
     }
+    .tag-nav-inner a:hover { color: var(--accent); }
     .tag-nav-inner a::after { display: none; }
     .tag-nav-inner a span { position: relative; padding-bottom: 2px; }
     .tag-nav-inner a span::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--grad-h); border-radius: 2px; transition: width .3s; }

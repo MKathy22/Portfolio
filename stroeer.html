@@ -40,6 +40,29 @@
       --tag-h:        44px;
     }
 
+    /* ── TAG NAV ── */
+    #tag-nav {
+      position: sticky; top: var(--hdr-h); z-index: 399;
+      background: #fff;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      box-shadow: 0 2px 16px rgba(0,0,0,.06);
+      padding: 0 var(--gutter);
+    }
+    .tag-nav-inner { max-width: var(--max); margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
+    .tag-nav-inner a {
+      display: inline-flex; align-items: center; justify-content: center;
+      flex: 1 1 auto; min-height: 44px; padding: 0 10px;
+      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500;
+      color: var(--text-mid); text-decoration: none;
+      transition: color .2s; white-space: nowrap; position: relative;
+    }
+    .tag-nav-inner a:hover { color: var(--accent); }
+    .tag-nav-inner a::after { display: none; }
+    .tag-nav-inner a span { position: relative; padding-bottom: 2px; }
+    .tag-nav-inner a span::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--grad-h); border-radius: 2px; transition: width .3s; }
+    .tag-nav-inner a:hover span::after { width: 100%; }
+    .tag-nav-inner a:focus-visible { outline: 2px solid var(--accent-vivid); outline-offset: -2px; }
+
     /* Image cards: 4:3 photo on top, white text area below */
     .img-card { padding: 0; }
     .img-card-photo {

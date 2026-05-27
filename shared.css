@@ -13,6 +13,7 @@
   /* Explicitly keep light mode even when OS/browser is in dark mode */
   :root { color-scheme: light; }
   html, body { background-color: var(--bg-a, #ffffff); color: var(--text, #1c1410); }
+  .site-header, #tag-nav { background-color: #ffffff; }
   .card, .process-card, .step-item { background-color: var(--card-bg, #ffffff); }
   .reflection-box, .status-banner { background-color: var(--accent-pale, #f5f0ff); }
   .quote-section { background-color: var(--bg-a, #ffffff); }
@@ -102,9 +103,10 @@ body {
 .side-drawer .drawer-contact-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
 
 /* ── TAG NAV ──────────────────────────────────────────────────────────────── */
-#tag-nav { position: sticky; top: var(--hdr-h); z-index: 399; background: var(--hdr-bg); border-bottom: 1px solid rgba(255,255,255,.08); padding: 0 var(--gutter); }
+#tag-nav { position: sticky; top: var(--hdr-h); z-index: 399; background: #fff; border-bottom: 1px solid rgba(0,0,0,.08); box-shadow: 0 2px 16px rgba(0,0,0,.06); padding: 0 var(--gutter); }
 .tag-nav-inner { max-width: var(--max); margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
-.tag-nav-inner a { display: inline-flex; align-items: center; justify-content: center; flex: 1 1 auto; min-height: var(--tag-h); padding: 0 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; color: #f5f0eb; text-decoration: none; transition: color .2s; white-space: nowrap; position: relative; }
+.tag-nav-inner a { display: inline-flex; align-items: center; justify-content: center; flex: 1 1 auto; min-height: var(--tag-h); padding: 0 10px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500; color: var(--text-mid); text-decoration: none; transition: color .2s; white-space: nowrap; position: relative; }
+.tag-nav-inner a:hover { color: var(--accent); }
 .tag-nav-inner a::after { display: none; }
 .tag-nav-inner a span { position: relative; padding-bottom: 2px; }
 .tag-nav-inner a span::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--grad-h, var(--accent-vivid)); border-radius: 2px; transition: width .3s; }

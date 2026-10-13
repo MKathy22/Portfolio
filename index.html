@@ -13,31 +13,30 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
+    /* Design tokens — keep in sync with :root in shared.css */
     :root {
       color-scheme: light;
-      --dark-pink: #8b2348;
-      --dark-red: #5b1d37;
-      --grad: linear-gradient(135deg, #5b1d37 0%, #c13e5c 100%);
-      --grad-v: linear-gradient(180deg, #5b1d37 0%, #c13e5c 100%);
       --accent: #8b2348;
       --accent-vivid: #c13e5c;
-      --accent-dim: rgba(139,35,72,0.10);
-      --radius-btn: 100px;
-      --font: 'Open Sans', system-ui, sans-serif;
-      --max: 1200px;
-      --gutter: clamp(20px, 5vw, 80px);
-      --white: #ffffff;
+      --accent-dim: rgba(139,35,72,.12);
+      --grad: linear-gradient(135deg, #5b1d37 0%, #c13e5c 100%);
+      --grad-v: linear-gradient(180deg, #5b1d37 0%, #c13e5c 100%);
+      --hdr-bg: #0f0b09;
       --bg-a: #ffffff;
       --bg-b: #f5f5f7;
       --text: #1c1410;
-      --text-mid: #3a302a;
-      --text-muted: #6b5f58;
-      --border: rgba(28,20,16,0.09);
-      --border-strong: rgba(28,20,16,0.16);
+      --text-mid: #2a2020;
+      --text-muted: #555555;
+      --border: rgba(0,0,0,.09);
+      --border-strong: rgba(0,0,0,.2);
       --card-bg: #ffffff;
-      --shadow: 0 2px 20px rgba(28,20,16,0.07);
-      --shadow-card: 0 4px 28px rgba(28,20,16,0.10);
-      --hdr-bg: #0f0b09;
+      --shadow: 0 2px 20px rgba(0,0,0,.07);
+      --shadow-card: 0 4px 28px rgba(0,0,0,.10);
+      --radius-btn: 100px;
+      --radius-card: 12px;
+      --font: 'Open Sans', system-ui, sans-serif;
+      --max: 1200px;
+      --gutter: clamp(20px, 5vw, 80px);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,40 +63,33 @@
     @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
     @keyframes expBar { to{width:100px} }
 
-    .fab-wrap { position: fixed; bottom: 26px; right: 22px; z-index: 400; display: flex; flex-direction: column; align-items: center; gap: 9px; }
+    .fab-wrap { position: fixed; bottom: 26px; right: 22px; z-index: 600; display: flex; flex-direction: column; align-items: center; gap: 9px; }
     .fab { width: 44px; height: 44px; border-radius: 50%; background: var(--grad); color: #fff; border: none; display: flex; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s, filter .2s; box-shadow: 0 4px 16px rgba(139,35,72,.3); }
     .fab:hover { filter: brightness(1.15); }
     .fab.on { opacity: 1; transform: none; }
     .fab:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
     /* HEADER */
-    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 500; background: transparent; border-bottom: 1px solid transparent; padding: 0 var(--gutter); height: 68px; display: flex; align-items: center; transition: background .4s ease, border-color .4s ease, box-shadow .4s ease; }
-    .site-header.scrolled { background: #fff; border-bottom-color: rgba(0,0,0,.08); box-shadow: 0 2px 16px rgba(0,0,0,.06); }
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 500; background: #fff; border-bottom: 1px solid rgba(0,0,0,.08); padding: 0 var(--gutter); height: 68px; display: flex; align-items: center; box-shadow: 0 2px 16px rgba(0,0,0,.06); }
     .navbar { width: 100%; max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; }
     .brand { display: flex; align-items: center; gap: 11px; text-decoration: none; color: var(--text); font-family: var(--font); font-size: 11px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; cursor: pointer; transition: color .4s; }
     .brand:focus-visible { outline: 2px solid var(--accent-vivid); outline-offset: 3px; border-radius: 4px; }
     .brand-mono { width: 40px; height: 40px; border-radius: 50%; background: #fff; object-fit: cover; flex-shrink: 0; display: block; }
-    .site-header.scrolled .brand { color: var(--text); }
     @media (max-width: 480px) { .brand span { display: none; } }
     .nav-links { display: flex; align-items: center; gap: 28px; justify-content: center; }
-    .nav-links a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--text); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; font-weight: 600; position: relative; padding-bottom: 2px; transition: color .3s; cursor: pointer; }
+    .nav-links a { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: var(--text-mid); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; font-weight: 600; position: relative; padding-bottom: 2px; transition: color .3s; cursor: pointer; }
     .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--accent-vivid); border-radius: 2px; transition: width .3s; }
     .nav-links a:hover { color: var(--accent); }
-    .site-header.scrolled .nav-links a { color: var(--text-mid); }
-    .site-header.scrolled .nav-links a:hover { color: var(--accent); }
     .nav-links a:hover::after { width: 100%; }
     .nav-links a:focus-visible { outline: 2px solid var(--accent-vivid); outline-offset: 4px; border-radius: 3px; }
     .hdr-right { display: flex; justify-content: flex-end; align-items: center; gap: 9px; }
     .btn-contact { display: inline-flex; align-items: center; gap: 7px; padding: 11px 28px; border-radius: var(--radius-btn); background: var(--grad); border: none; color: #fff; font-family: var(--font); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; text-decoration: none; cursor: pointer; font-weight: 600; box-shadow: 0 3px 14px rgba(139,35,72,.35); transition: filter .2s, transform .2s; }
     .btn-contact:hover { filter: brightness(1.12); transform: translateY(-1px); }
     .btn-contact:focus-visible { outline: 2px solid var(--accent-vivid); outline-offset: 3px; }
-    .menu-btn { display: none; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,.06); border: 1px solid rgba(0,0,0,.12); color: var(--text); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 11px; transition: background .25s, color .4s, border-color .4s; }
-    .menu-btn:hover { background: rgba(0,0,0,.1); }
+    .menu-btn { display: none; width: 40px; height: 40px; border-radius: 50%; background: rgba(0,0,0,.04); border: 1px solid rgba(0,0,0,.12); color: var(--text); cursor: pointer; flex-direction: column; align-items: center; justify-content: center; gap: 5px; padding: 11px; transition: background .25s, color .4s, border-color .4s; }
+    .menu-btn:hover { background: rgba(0,0,0,.08); }
     .menu-btn:focus-visible { outline: 2px solid var(--accent-vivid); outline-offset: 3px; }
     .menu-btn span { display: block; width: 100%; height: 1.5px; background: var(--text); border-radius: 2px; transition: transform .3s, opacity .3s, background .4s; }
-    .site-header.scrolled .menu-btn { background: rgba(0,0,0,.04); border-color: rgba(0,0,0,.12); color: var(--text); }
-    .site-header.scrolled .menu-btn:hover { background: rgba(0,0,0,.08); }
-    .site-header.scrolled .menu-btn span { background: var(--text); }
     .menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
     .menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
     .menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
@@ -110,7 +102,7 @@
     .side-drawer.on { transform: translateX(0); }
     .side-drawer a { font-family: var(--font); font-size: 11px; font-weight: 600; letter-spacing: .24em; text-transform: uppercase; color: #fff; text-decoration: none; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; justify-content: space-between; gap: 8px; position: relative; transition: none; cursor: pointer; }
     .side-drawer a::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 0; height: 1.5px; background: var(--accent-vivid); border-radius: 2px; transition: width .3s; }
-    .side-drawer a:hover { color: var(--white); }
+    .side-drawer a:hover { color: #fff; }
     .side-drawer a:hover::after { width: 100%; }
     .side-drawer a:focus-visible { outline: 2px solid var(--accent-vivid); outline-offset: 3px; }
     .drawer-x { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); color: #f5f0eb; display: flex; align-items: center; justify-content: center; cursor: pointer; }
@@ -124,13 +116,8 @@
     .btn-primary:hover { filter: brightness(1.12); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(139,35,72,.4); }
     .btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
     .btn-ghost { display: inline-flex; align-items: center; gap: 9px; padding: 13px 28px; border-radius: var(--radius-btn); font-family: var(--font); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--text-mid); text-decoration: none; cursor: pointer; border: 1.5px solid var(--border-strong); font-weight: 600; transition: color .2s, border-color .2s, background .2s; }
-    .btn-ghost:hover { color: var(--text); border-color: var(--accent); background: var(--accent-dim); }
+    .btn-ghost:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); }
     .btn-ghost:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    .btn-see-more { display: inline-flex; align-items: center; gap: 8px; padding: 13px 28px; border-radius: var(--radius-btn); background: var(--grad); color: #fff; font-family: var(--font); font-size: 11px; letter-spacing: .24em; text-transform: uppercase; cursor: pointer; border: none; font-weight: 600; box-shadow: 0 4px 18px rgba(139,35,72,.28); transition: filter .2s, transform .2s, box-shadow .2s; }
-    .btn-see-more:hover { filter: brightness(1.12); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(139,35,72,.4); }
-    .btn-see-more:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    .btn-see-more svg { transition: transform .3s; }
-    .btn-see-more.open svg:last-child { transform: rotate(180deg); }
 
     /* LINKEDIN HEADER BTN */
     @media (max-width: 1100px) { .hdr-linkedin { display: none; } }
@@ -138,8 +125,6 @@
     .hdr-linkedin .li-label { max-width: 0; overflow: hidden; opacity: 0; white-space: nowrap; transition: max-width .3s ease, opacity .25s ease; }
     .hdr-linkedin:hover { padding: 11px 20px 11px 16px; gap: 7px; }
     .hdr-linkedin:hover .li-label { max-width: 80px; opacity: 1; }
-    .site-header.scrolled .hdr-linkedin { color: var(--text-mid); border-color: rgba(0,0,0,.2); }
-    .site-header.scrolled .hdr-linkedin:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); }
 
     /* CONTACT ICON (mobile-only, replaces btn-contact below 960px) */
     .hdr-contact-icon { display: none; width: 40px; height: 40px; border-radius: 50%; background: var(--grad); color: #fff; align-items: center; justify-content: center; text-decoration: none; cursor: pointer; box-shadow: 0 3px 10px rgba(0,0,0,.18); transition: filter .2s, transform .2s; }
@@ -157,42 +142,29 @@
     .sec-label::before { content: ''; width: 24px; height: 1.5px; background: var(--grad); border-radius: 2px; }
     .sec-h2 { font-family: var(--font); font-size: clamp(34px,5vw,58px); font-weight: 600; line-height: 1.05; letter-spacing: -.02em; color: var(--text); margin-bottom: 18px; }
     .sec-h2 em { font-style: normal; color: var(--accent); font-weight: 600; }
-    .sec-text { font-size: 16px; color: var(--text-muted); max-width: 450px; line-height: 1.8; font-weight: 400; }
+    .sec-text { font-size: 15px; color: var(--text-muted); max-width: 450px; line-height: 1.8; font-weight: 400; }
 
     /* LANDING */
-    .landing-section { min-height: 100svh; display: grid; place-items: center; padding: 180px var(--gutter) 120px; position: relative; overflow: hidden; background: linear-gradient(to right, #ffffff 40%, #e4e4e4 80%); }
+    .landing-section { min-height: 100svh; display: grid; grid-template-columns: minmax(0, 1fr); place-items: center; padding: 180px var(--gutter) 120px; position: relative; overflow: hidden; background: linear-gradient(to right, #ffffff 40%, #e4e4e4 80%); }
     .landing-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 55% 55% at 80% 65%, rgba(139,35,72,.16) 0%, transparent 68%), radial-gradient(ellipse 35% 35% at 14% 24%, rgba(91,29,55,.12) 0%, transparent 60%); }
 
-    /* Hero image — grid layout matching about-me section */
-    .landing-inner { max-width: var(--max); width: 100%; margin: 0 auto; position: relative; z-index: 1;
-      display: grid; grid-template-columns: 1fr clamp(220px, 38%, 480px); gap: 48px; align-items: center; }
-    .landing-content { min-width: 0; align-self: center; }
-    .landing-hero-img { width: calc(100% + var(--gutter)); pointer-events: none; user-select: none; align-self: end; border-radius: 12px; overflow: hidden; transform: rotate(-10deg); transform-origin: bottom center; }
-    .landing-hero-img img { width: 100%; aspect-ratio: auto; object-fit: cover; object-position: center top; display: block; border-radius: 12px; }
-    /* Mobile: show portrait-oriented image instead */
-    .landing-hero-img .hero-img-mobile { display: none; }
-    .landing-hero-img .hero-img-desktop { display: block; }
-    @media (max-width: 700px) {
-      .landing-hero-img .hero-img-desktop { display: none; }
-      .landing-hero-img .hero-img-mobile { display: block; }
-      .landing-hero-img img { aspect-ratio: auto; height: auto; object-position: center; }
-    }
-    @media (max-width: 700px) {
-      .landing-inner { grid-template-columns: 1fr; }
-      .landing-hero-img { display: none; }
-      .landing-content { order: 1; }
-    }
-    .landing-eye { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; font-weight: 600; display: flex; align-items: center; gap: 13px; opacity: 0; animation: fadeUp .8s .45s ease forwards; }
-    .landing-eye::before { content: ''; width: 34px; height: 1.5px; background: var(--grad); border-radius: 2px; }
+    .landing-inner { max-width: var(--max); width: 100%; min-width: 0; margin: 0 auto; position: relative; z-index: 2; }
+    .landing-content { min-width: 0; max-width: 580px; }
+
+    /* Stacked horizontal project images — bleed flush to the true right edge of the page */
+    .landing-hero-imgs { position: absolute; top: 116px; right: 0; bottom: 60px; width: clamp(260px, 28vw, 400px); display: flex; flex-direction: column; justify-content: center; gap: 20px; z-index: 3; }
+    .hero-strip-item { display: block; aspect-ratio: 16/9; overflow: hidden; border-radius: 18px 0 0 18px; box-shadow: 0 10px 32px rgba(28,20,16,.16); flex-shrink: 0; cursor: pointer; transition: transform .3s ease, box-shadow .3s ease; }
+    .hero-strip-item img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1); transition: filter .5s ease; }
+    .hero-strip-item:hover, .hero-strip-item:focus-visible { transform: translateX(-8px); box-shadow: 0 14px 40px rgba(139,35,72,.22); }
+    .hero-strip-item:hover img, .hero-strip-item:focus-visible img { filter: grayscale(0); }
+    .hero-strip-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    @media (max-width: 1040px) { .landing-hero-imgs { display: none; } .landing-content { max-width: 680px; } }
     .landing-h1 { font-family: var(--font); font-size: clamp(34px,5vw,58px); font-weight: 600; line-height: 1.05; letter-spacing: -.02em; color: var(--text); margin-bottom: 36px; opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s ease; }
     .landing-h1 em { font-style: normal; color: var(--accent); font-weight: 600; }
     .landing-sub { font-size: clamp(17px,1.6vw,18px); color: var(--text-mid); max-width: 420px; line-height: 1.82; margin-bottom: 36px; font-weight: 400; opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
     .landing-meta { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 36px; opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
-    .landing-meta-item { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-muted); font-weight: 400; }
+    .landing-meta-item { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-muted); font-weight: 400; min-width: 0; max-width: 100%; }
     .landing-meta-item svg { color: var(--accent); flex-shrink: 0; }
-    .avail-dot { width: 8px; height: 8px; border-radius: 50%; background: #2e7d4f; flex-shrink: 0; position: relative; }
-    .avail-dot::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: rgba(46,125,79,.25); animation: avail-pulse 2s ease-in-out infinite; }
-    @keyframes avail-pulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.6); opacity: 0; } }
     .landing-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
     .hero-vis { opacity: 1 !important; transform: none !important; }
 
@@ -201,26 +173,25 @@
     .projects-inner { max-width: var(--max); margin: 0 auto; }
     .projects-hdr { display: flex; flex-direction: column; gap: 16px; margin-bottom: 64px; max-width: 560px; }
     .projects-hdr-text { border-left: none; padding-left: 0; margin-top: 0; }
-    .all-projects-wrap { display: flex; flex-direction: column; gap: 20px; }
-    .proj-num { display: none; }
-    .project-item { display: grid; grid-template-columns: 46% 1fr auto; align-items: stretch; gap: 0 clamp(16px, 3vw, 40px); padding: 0; overflow: hidden; border: 1px solid var(--border); text-decoration: none; color: var(--text); position: relative; cursor: pointer; border-radius: 10px; margin: 0; transition: background .3s ease; }
+    .all-projects-wrap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    @media (max-width: 900px) { .all-projects-wrap { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .all-projects-wrap { grid-template-columns: 1fr; } }
+    .project-item { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); text-decoration: none; color: var(--text); position: relative; cursor: pointer; border-radius: var(--radius-card); background: var(--card-bg); transition: background .3s ease, box-shadow .3s ease, transform .3s ease; }
     .project-item::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--grad); border-radius: 2px; width: 0; transition: width .5s ease; }
-    .project-item:hover { background: var(--bg-b); }
+    .project-item:hover { background: var(--bg-b); box-shadow: var(--shadow-card); transform: translateY(-3px); }
     .project-item:hover::after { width: 100%; }
     .project-item:hover .proj-title { color: var(--accent); }
     .project-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-    @media (max-width: 640px) { .project-item { grid-template-columns: 1fr; grid-template-rows: auto auto auto; gap: 0; } .proj-thumb { width: 100%; aspect-ratio: 4/3; height: auto; order: -1; align-self: auto; } .proj-info { order: 0; padding: 20px 16px 14px; } .proj-arrow { order: 1; justify-self: center; align-self: auto; margin: 8px 0 18px; } }
-    .proj-thumb { overflow: hidden; flex-shrink: 0; position: relative; aspect-ratio: 4/3; align-self: start; }
+    .proj-thumb { overflow: hidden; flex-shrink: 0; position: relative; aspect-ratio: 4/3; width: 100%; }
     .proj-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(0); transition: transform .5s ease, filter .5s ease; }
     .project-item:hover .proj-thumb img { transform: scale(1.05); filter: saturate(1); }
-    .proj-info { min-width: 0; padding: 28px 0 28px 16px; display: flex; flex-direction: column; justify-content: center; }
-    .proj-title { font-family: var(--font); font-size: clamp(17px,2vw,22px); font-weight: 700; margin-bottom: 7px; line-height: 1.2; transition: color .25s; }
-    .proj-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 11px; font-weight: 400; }
-    .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .proj-info { min-width: 0; padding: 22px 22px 26px; display: flex; flex-direction: column; }
+    .proj-title { font-family: var(--font); font-size: 18px; font-weight: 700; margin-bottom: 8px; line-height: 1.25; transition: color .25s; }
+    .proj-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 14px; font-weight: 400; }
+    .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
     .tag { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(139,35,72,.25); padding: 3px 11px; border-radius: var(--radius-btn); font-weight: 600; }
-    .proj-arrow { width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0; background: transparent; color: rgba(139,35,72,.3); border: none; box-shadow: inset 0 0 0 1.5px rgba(139,35,72,.2); display: flex; align-items: center; justify-content: center; transition: transform .3s, background .2s, color .2s, box-shadow .2s; align-self: center; margin-right: clamp(10px, 2vw, 24px); }
+    .proj-arrow { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; background: transparent; color: rgba(139,35,72,.3); border: none; box-shadow: inset 0 0 0 1.5px rgba(139,35,72,.2); display: flex; align-items: center; justify-content: center; transition: transform .3s, background .2s, color .2s, box-shadow .2s; margin-top: auto; }
     .project-item:hover .proj-arrow { background: var(--grad); color: #fff; box-shadow: 0 3px 12px rgba(139,35,72,.28); transform: rotate(-45deg); filter: brightness(1.1); }
-    .see-more-wrap { display: flex; justify-content: center; margin-top: 48px; }
 
     /* COMPANIES */
     .company-section { padding: 68px var(--gutter); border-top: 1px solid var(--border); background: var(--bg-b); }
@@ -252,30 +223,19 @@
     .svc-icon svg { width: 24px; height: 24px; stroke: var(--accent); }
     .svc-title { font-family: var(--font); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; text-align: left; transition: color .25s; }
     .svc-list { list-style: none; display: flex; flex-direction: column; gap: 7px; text-align: left; }
-    .svc-list li { font-size: 13px; color: var(--text-muted); padding-left: 15px; position: relative; font-weight: 400; }
+    .svc-list li { font-size: 14px; color: var(--text-muted); padding-left: 15px; position: relative; font-weight: 400; }
     .svc-list li::before { content: '•'; position: absolute; left: 0; color: var(--accent); font-size: 22px; line-height: .9; top: -2px; }
 
     /* Tool icons row — same style as svc-card */
     .tools-row { margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--border); }
     .tools-row .sec-label { margin-bottom: 24px; }
-    /* Desktop: single row, no scroll — icons shrink slightly to fit */
-    .tools-grid { display: flex; flex-wrap: nowrap; gap: 0; row-gap: 8px; }
-    .tool-icon {
-      display: flex; flex-direction: column; align-items: center;
-      gap: 8px; padding: 14px 6px;
-      background: transparent; border-radius: 8px;
-      position: relative; overflow: hidden; cursor: default;
-      transition: background .25s;
-      flex: 1 1 0; min-width: 60px;
-    }
-    /* Mobile: wrap into multiple rows, each icon gets equal width */
-    @media (max-width: 860px) {
-      .tools-grid { flex-wrap: wrap; row-gap: 8px; }
-      .tool-icon { flex: 1 1 calc(25% - 0px); min-width: 72px; max-width: 88px; }
-    }
-    @media (max-width: 480px) {
-      .tool-icon { flex: 1 1 calc(33.333% - 0px); min-width: 60px; }
-    }
+    /* 10 per row on desktop, fewer on smaller screens — never scrolls sideways */
+    .tools-grid { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 8px 0; }
+    @media (max-width: 1000px) { .tools-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); } }
+    @media (max-width: 700px) { .tools-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+    @media (max-width: 480px) { .tools-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    @media (max-width: 340px) { .tools-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    .tool-icon { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 4px; min-width: 0; background: transparent; border-radius: 8px; position: relative; overflow: hidden; cursor: default; transition: background .25s; }
     .tool-icon::after {
       content: ''; position: absolute; bottom: 0; left: 0;
       width: 0; height: 2px; background: var(--grad); border-radius: 2px;
@@ -285,20 +245,19 @@
     .tool-icon:hover::after { width: 100%; }
     .tool-icon:hover .tool-name { color: var(--accent); }
     .tool-icon img { width: 28px; height: 28px; object-fit: contain; flex-shrink: 0; }
-    .tool-name { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: .01em; line-height: 1.2; transition: color .25s; text-align: center; }
+    .tool-name { font-size: 11px; font-weight: 700; color: var(--text); letter-spacing: .01em; line-height: 1.25; transition: color .25s; text-align: center; overflow-wrap: anywhere; }
 
     /* ABOUT */
     .about-section { padding: 0; background: transparent; }
-    .about-inner { max-width: var(--max); margin: 0 auto; }
     .about-top { background: var(--bg-b); padding: 116px var(--gutter) 80px; }
     .about-top-inner { max-width: var(--max); margin: 0 auto; }
     .about-tl { background: #ffffff; padding: 80px var(--gutter) 116px; }
     .about-tl-inner { max-width: var(--max); margin: 0 auto; }
     .about-layout { display: grid; grid-template-columns: 1fr 380px; gap: 76px; align-items: start; }
     @media (max-width: 900px) { .about-layout { grid-template-columns: 1fr; } }
-    .about-txt p { font-size: 16px; color: var(--text-mid); line-height: 1.9; margin-bottom: 16px; font-weight: 400; font-style: normal; }
-    .about-img { position: relative; overflow: hidden; border-radius: 12px; }
-    .about-img img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; border-radius: 12px; filter: saturate(1); }
+    .about-txt p { font-size: 15px; color: var(--text-mid); line-height: 1.9; margin-bottom: 16px; font-weight: 400; font-style: normal; }
+    .about-img { position: relative; overflow: hidden; border-radius: var(--radius-card); }
+    .about-img img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; border-radius: var(--radius-card); }
     .about-img::before { content: ''; position: absolute; inset: -9px; border: 1.5px solid var(--accent); border-radius: 16px; z-index: -1; opacity: .45; }
     @media (max-width: 900px) { .about-img { max-width: 360px; } }
 
@@ -315,7 +274,7 @@
     .tl-item:hover .tl-body h4 { color: var(--accent); }
     .tl-date { font-size: 12px; color: var(--text-muted); letter-spacing: .04em; padding-top: 2px; font-weight: 400; }
     .tl-body h4 { font-family: var(--font); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; line-height: 1.3; transition: color .25s; }
-    .tl-body p { font-size: 13px; color: var(--text-muted); line-height: 1.65; font-weight: 400; }
+    .tl-body p { font-size: 14px; color: var(--text-muted); line-height: 1.65; font-weight: 400; }
 
     /* TESTIMONIALS */
     .testimonials-section { padding: 116px var(--gutter); background: var(--bg-b); }
@@ -323,7 +282,7 @@
     .testi-hdr { margin-bottom: 60px; }
     .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
     @media (max-width: 900px) { .testi-grid { grid-template-columns: 1fr; } }
-    .testi-card { background: var(--card-bg); padding: 36px 32px; border-radius: 16px; box-shadow: var(--shadow-card); border: 1px solid var(--border); display: flex; flex-direction: column; transition: box-shadow .3s, transform .3s, border-color .3s; position: relative; overflow: hidden; }
+    .testi-card { background: var(--card-bg); padding: 36px 32px; border-radius: var(--radius-card); box-shadow: var(--shadow-card); border: 1px solid var(--border); display: flex; flex-direction: column; transition: box-shadow .3s, transform .3s, border-color .3s; position: relative; overflow: hidden; }
     .testi-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--grad); border-radius: 2px; transition: width .45s ease; }
     .testi-card:hover { box-shadow: 0 10px 44px rgba(139,35,72,.13); transform: translateY(-3px); border-color: rgba(139,35,72,.25); }
     .testi-card:hover::after { width: 100%; }
@@ -332,7 +291,7 @@
     .q-bot { margin-top: 8px; text-align: right; }
     .testi-body { font-family: var(--font); font-size: 15px; font-weight: 400; line-height: 1.86; color: var(--text-mid); font-style: normal; flex: 1; }
     .testi-person { margin-top: 26px; padding-top: 18px; border-top: 1px solid var(--border); }
-    .testi-person h4 { font-family: var(--font); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .testi-person h4 { font-family: var(--font); font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
     .testi-person p { font-size: 12px; color: var(--text-muted); font-weight: 400; }
 
     /* CITATION */
@@ -382,14 +341,14 @@
     /* FIX: img is position:absolute so it always fills the entire grid cell,
        ensuring the centered overlay works on the tall swimming card too */
     /* Hobbies: B&W + dark overlay + text visible by default; hover = full colour, no overlay, no text */
-    .hob-card { position: relative; overflow: hidden; border-radius: 10px; }
+    .hob-card { position: relative; overflow: hidden; border-radius: var(--radius-card); }
     .hob-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) brightness(1) contrast(1.5); transition: transform .5s ease, filter .5s ease; }
     .hob-card:hover img { transform: scale(1.04); filter: grayscale(0) brightness(1); }
     /* Gradient overlay: dark at bottom fading to transparent at top */
     .hob-overlay { position: absolute; inset: 0; pointer-events: none; display: flex; align-items: flex-end; justify-content: center; padding: 14px 16px; background: linear-gradient(to top, rgba(10,4,2,.95) 0%, rgba(240,240,240,.75) 100%); transition: opacity .4s ease; }
     .hob-card:hover .hob-overlay { opacity: 0; }
-    .hob-lbl { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--white); font-weight: 600; opacity: 1; line-height: 1.4; text-align: center; max-width: 100%; word-break: break-word; }
-    @media (max-width: 480px) { .hob-lbl { font-size: 10px; letter-spacing: .1em; } }
+    .hob-lbl { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: #fff; font-weight: 600; opacity: 1; line-height: 1.4; text-align: center; max-width: 100%; word-break: break-word; }
+    @media (max-width: 480px) { .hob-lbl { letter-spacing: .1em; } }
 
     /* STATS */
     .stats-section { padding: 44px var(--gutter); background: var(--grad); }
@@ -410,7 +369,7 @@
     .faq-item::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--grad); border-radius: 2px; transition: width .45s ease; }
     .faq-item:hover::after { width: 100%; }
     .faq-item summary { display: flex; align-items: center; gap: 12px; padding: 18px 0; cursor: pointer; list-style: none; font-size: 15px; font-weight: 700; color: var(--text); transition: color .2s, background .25s; }
-    .faq-item:hover summary { color: var(--accent); background: rgba(139,35,72,.04); border-radius: 6px; padding-left: 8px; padding-right: 8px; font-size: 15px; }
+    .faq-item:hover summary { color: var(--accent); background: rgba(139,35,72,.04); border-radius: 6px; padding-left: 8px; padding-right: 8px; }
     .faq-item summary::-webkit-details-marker { display: none; }
     .faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
     .faq-q-icon { color: var(--accent); flex-shrink: 0; display: flex; }
@@ -418,19 +377,19 @@
     .faq-q-text { flex: 1; }
     .faq-chev { width: 15px; height: 15px; color: var(--text-muted); flex-shrink: 0; transition: transform .3s; margin-left: auto; }
     details[open] .faq-chev { transform: rotate(180deg); color: var(--accent); }
-    .faq-ans { padding: 0 0 18px 30px; font-size: 13px; color: var(--text-muted); line-height: 1.65; font-weight: 400; }
+    .faq-ans { padding: 0 0 18px 30px; font-size: 14px; color: var(--text-muted); line-height: 1.65; font-weight: 400; }
 
     /* FOOTER */
     .site-footer { background: var(--hdr-bg); color: #f5f0eb; }
     .footer-cta { padding: 56px var(--gutter); background: var(--grad-v); }
     .footer-cta-inner { max-width: var(--max); margin: 0 auto; padding: 0; }
-    .footer-h2 { font-family: var(--font); font-size: clamp(28px,4.5vw,52px); font-weight: 600; line-height: 1; letter-spacing: -.02em; color: var(--white); }
+    .footer-h2 { font-family: var(--font); font-size: clamp(28px,4.5vw,52px); font-weight: 600; line-height: 1; letter-spacing: -.02em; color: #fff; }
     .footer-h2 em { font-style: normal; font-weight: 600; }
-    .footer-sub { font-size: 14px; color: var(--white); margin-top: 10px; font-weight: 400; }
+    .footer-sub { font-size: 14px; color: #fff; margin-top: 10px; font-weight: 400; }
     .footer-bot { padding: 24px var(--gutter); border-top: 1px solid rgba(255,255,255,.12); }
     .footer-bot-inner { max-width: var(--max); margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
     .footer-bot-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-    .footer-copy { font-size: 11px; color: var(--white); letter-spacing: .05em; }
+    .footer-copy { font-size: 11px; color: #fff; letter-spacing: .05em; }
     .footer-links { display: flex; gap: 24px; align-items: center; }
     .footer-link { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #fff; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; font-weight: 600; position: relative; padding-bottom: 2px; transition: none; cursor: pointer; }
     .footer-link svg { width: 14px; height: 14px; flex-shrink: 0; }
@@ -446,25 +405,16 @@
       /* Landing */
       .landing-section { padding: 100px 16px 60px; }
       .landing-h1 { font-size: 30px; }
-      .landing-sub { font-size: 14px; }
       .landing-actions { flex-direction: column; align-items: flex-start; gap: 10px; }
       .btn-primary, .btn-ghost { width: 100%; justify-content: center; padding: 12px 20px; }
 
-      /* Projects */
-      .proj-title { font-size: 16px; }
-      .proj-desc { font-size: 13px; }
 
       /* Capabilities */
       .svc-grid { grid-template-columns: 1fr; }
-      .svc-title { font-size: 14px; }
 
-      /* Tools */
-      .tool-icon { min-width: 52px; }
-      .tool-name { font-size: 9px; letter-spacing: 0; }
 
       /* Timeline */
       .tl-item { grid-template-columns: 80px 1fr; gap: 12px; }
-      .tl-date { font-size: 11px; }
 
       /* Testimonials */
       .testi-card { padding: 24px 18px; }
@@ -475,7 +425,6 @@
 
       /* FAQ */
       .faq-inner { gap: 40px; }
-      .faq-item summary { font-size: 14px; }
 
       /* Footer */
       .footer-h2 { font-size: 26px; }
@@ -488,9 +437,9 @@
     @media (hover: none) {
       .project-item:hover, .svc-card:hover, .tl-item:hover,
       .faq-item:hover summary, .testi-card:hover,
-      .co-item:hover, .hob-card:hover, .tool-icon:hover,
+      .co-item:hover, .hob-card:hover, .tool-icon:hover, .hero-strip-item:hover,
       .proj-arrow, .btn-primary:hover, .btn-ghost:hover,
-      .btn-contact:hover, .btn-see-more:hover { transform: none !important; }
+      .btn-contact:hover { transform: none !important; }
     }
     /* Show project images in full colour only on small touch screens */
     @media (hover: none) and (max-width: 700px) {
@@ -501,7 +450,7 @@
       :root { color-scheme: light; }
       html, body { background-color: var(--bg-a); color: var(--text); }
       .company-section { background-color: var(--bg-b); }
-      .card, .process-card, .step-item, .svc-card, .hob-card { background-color: #ffffff; }
+      .svc-card, .hob-card { background-color: #ffffff; }
     }
   </style>
 </head>
@@ -608,10 +557,11 @@
             </span>
           </div>
         </div>
-        <div class="landing-hero-img" aria-hidden="true">
-          <img class="hero-img-desktop" src="img/Profile Image Round.png" alt="" loading="eager">
-          <img class="hero-img-mobile" src="img/Profile Image Round.png" alt="" loading="eager">
-        </div>
+      </div>
+      <div class="landing-hero-imgs">
+        <a href="#projects" class="hero-strip-item" aria-label="Master thesis project — jump to the projects section"><img src="img/thesis/MasterThesis-landing.png" alt=""></a>
+        <a href="#projects" class="hero-strip-item" aria-label="MVTec project — jump to the projects section"><img src="img/mvtec/MVTec-landing.png" alt=""></a>
+        <a href="#projects" class="hero-strip-item" aria-label="LMU Buddy project — jump to the projects section"><img src="img/lmubuddy/LMUBuddy-landing.png" alt=""></a>
       </div>
     </section>
 
@@ -633,79 +583,66 @@
             <div class="sec-label reveal">Selected Work</div>
             <h2 class="sec-h2 reveal" id="proj-h">A small<br><em>selection.</em></h2>
           </div>
-          <p class="sec-text reveal projects-hdr-text">Work across UX, UI, Web, App &amp; Product Design — <br>from problem research to refined prototypes.</p>
+          <p class="sec-text reveal projects-hdr-text">Work across UX, UI, Web, App &amp; Product Design — from problem research to refined prototypes.</p>
         </div>
 
         <div class="all-projects-wrap" id="allProjects" role="list">
-          <a href="lmubuddy.html" class="project-item reveal" role="listitem">
-            <div class="proj-thumb" aria-hidden="true"><img src="img/lmubuddy/LMUBuddy.png" alt="" loading="lazy"></div>
+          <a href="thesis.html" class="project-item reveal" role="listitem">
+            <div class="proj-thumb" aria-hidden="true"><img src="img/thesis/MasterThesis.png" alt="" loading="lazy"></div>
             <div class="proj-info">
-              <div class="proj-num"></div>
-              <div class="proj-title">LMU Buddy — Cross-Cultural Social App.</div>
-              <div class="proj-desc">A cross-cultural app connecting local and international students — built on user needs and designed around clean and accessible interactions.</div>
-              <div class="proj-tags"><span class="tag">UX & App UI Design</span><span class="tag">Interaction Design</span><span class="tag">Accessibility</span></div>
+              <div class="proj-title">Public Security Interfaces - AI Learning.</div>
+              <div class="proj-desc">Researching how AI-generated learning content on public displays can enhance IT security training and learning in corporate environments.</div>
+              <div class="proj-tags"><span class="tag">HCI Master Thesis</span><span class="tag">Industry Colab</span><span class="tag">UX Research & Design</span></div>
+              <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
             </div>
-            <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
           </a>
           <a href="mvtec.html" class="project-item reveal" role="listitem">
             <div class="proj-thumb" aria-hidden="true"><img src="img/mvtec/MVTec.png" alt="" loading="lazy"></div>
             <div class="proj-info">
-              <div class="proj-num"></div>
               <div class="proj-title">MVTec GmbH — Computer Vision Software.</div>
               <div class="proj-desc">Designing intuitive, accessible interfaces for computer vision and deep learning software — making highly complex technical tools more usable.</div>
               <div class="proj-tags"><span class="tag">Working Student</span><span class="tag">B2B Enterprise UX</span><span class="tag">Accessibility</span><span class="tag">AI</span></div>
+              <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
             </div>
-            <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
           </a>
-          <a href="thesis.html" class="project-item reveal" role="listitem">
-            <div class="proj-thumb" aria-hidden="true"><img src="img/thesis/MasterThesis.png" alt="" loading="lazy"></div>
+          <a href="lmubuddy.html" class="project-item reveal" role="listitem">
+            <div class="proj-thumb" aria-hidden="true"><img src="img/lmubuddy/LMUBuddy.png" alt="" loading="lazy"></div>
             <div class="proj-info">
-              <div class="proj-num"></div>
-              <div class="proj-title">Public Security Interfaces - AI Learning.</div>
-              <div class="proj-desc">Researching how AI-generated learning content on public displays can enhance IT security training and learning in corporate environments.</div>
-              <div class="proj-tags"><span class="tag">HCI Master Thesis</span><span class="tag">Industry Colab</span><span class="tag">UX Research & Design</span></div>
+              <div class="proj-title">LMU Buddy — Cross-Cultural Social App.</div>
+              <div class="proj-desc">A cross-cultural app connecting local and international students — built on user needs and designed around clean and accessible interactions.</div>
+              <div class="proj-tags"><span class="tag">UX & App UI Design</span><span class="tag">Interaction Design</span><span class="tag">Accessibility</span></div>
+              <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
             </div>
-            <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
           </a>
-          <!-- Extra projects — hidden until See More clicked -->
-          <!--<a href="skillswap.html" class="project-item extra-item" role="listitem" aria-hidden="true" tabindex="-1" style="display:none">
+          <!-- SkillSwap hidden for now — remove this comment wrapper to show it again
+          <a href="skillswap.html" class="project-item reveal" role="listitem">
             <div class="proj-thumb" aria-hidden="true"><img src="img/skillswap/Skillswap.png" alt="" loading="lazy"></div>
             <div class="proj-info">
-              <div class="proj-num"></div>
               <div class="proj-title">SkillSwap — Social Learning Platform.</div>
               <div class="proj-desc">A skill exchange platform designed for peer-to-peer and collaborative learning — from research over user testing to prototyping.</div>
               <div class="proj-tags"><span class="tag">UX & Interaction Design</span><span class="tag">Mobile App UI</span><span class="tag">Product Design</span></div>
+              <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
             </div>
-            <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
-          </a>-->
+          </a>
+          -->
           <a href="coco.html" class="project-item reveal" role="listitem">
             <div class="proj-thumb" aria-hidden="true"><img src="img/coco/Coco.png" alt="" loading="lazy"></div>
             <div class="proj-info">
-              <div class="proj-num"></div>
               <div class="proj-title">CoCo — Communication Companion.</div>
               <div class="proj-desc">An IoT plush toy designed to nurture family bonding across distance — tangible interaction and emotionally intelligent product design.</div>
               <div class="proj-tags"><span class="tag">Published in Paper, CHI'26</span><span class="tag">XD & UX Design</span><span class="tag">Product Design</span></div>
+              <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
             </div>
-            <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
           </a>
-          <a href="stroeer.html" class="project-item extra-item" role="listitem" aria-hidden="true" tabindex="-1" style="display:none">
+          <a href="stroeer.html" class="project-item reveal" role="listitem">
             <div class="proj-thumb" aria-hidden="true"><img src="img/stroeer/Stroeer.png" alt="" loading="lazy"></div>
             <div class="proj-info">
-              <div class="proj-num"></div>
               <div class="proj-title">Ströer SE & Co. KGaA — Public Displays.</div>
               <div class="proj-desc">Visual and motion design for digital out-of-home media across Germany — content for public displays reaching millions of people daily.</div>
               <div class="proj-tags"><span class="tag">Working Student</span><span class="tag">Graphic & Motion Design</span><span class="tag">Adobe CC</span></div>
+              <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
             </div>
-            <div class="proj-arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></div>
           </a>
-        </div>
-
-        <div class="see-more-wrap">
-          <button class="btn-see-more" id="seeMoreBtn" aria-expanded="false" onclick="toggleProjects(this)">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-            <span id="seeMoreLabel">See More Projects</span>
-            <svg id="seeMoreIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transition:transform .3s"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
         </div>
       </div>
     </section>
@@ -754,24 +691,35 @@
           </article>
         </div>
 
-        <!-- Tool icons — same style as capability cards -->
+        <!-- Tool icons — same style as capability cards; ordered by importance within each group -->
         <div class="tools-row reveal">
           <div class="sec-label">Tools &amp; Technologies</div>
           <div class="tools-grid">
-            <div class="tool-icon"><img src="img/tools/figma.svg" alt="" loading="lazy"><span class="tool-name">Figma</span></div>
-            <div class="tool-icon"><img src="img/tools/miro.svg" alt="" loading="lazy"><span class="tool-name">Miro</span></div>
-            <div class="tool-icon"><img src="img/tools/canva.svg" alt="" loading="lazy"><span class="tool-name">Canva</span></div>
-            <div class="tool-icon"><img src="img/tools/adobe-cc.svg" alt="" loading="lazy"><span class="tool-name">Adobe CC</span></div>
-            <div class="tool-icon"><img src="img/tools/ps.svg" alt="" loading="lazy"><span class="tool-name">Photoshop</span></div>
-            <div class="tool-icon"><img src="img/tools/ae.svg" alt="" loading="lazy"><span class="tool-name">After Effects</span></div>
-            <div class="tool-icon"><img src="img/tools/davinci-resolve.svg" alt="" loading="lazy"><span class="tool-name">Davinci Resolve</span></div>
-            <div class="tool-icon"><img src="img/tools/maya.svg" alt="" loading="lazy"><span class="tool-name">Autodesk Maya</span></div>
-            <div class="tool-icon"><img src="img/tools/html.svg" alt="" loading="lazy"><span class="tool-name">HTML5</span></div>
-            <div class="tool-icon"><img src="img/tools/css.svg" alt="" loading="lazy"><span class="tool-name">CSS3</span></div>
-            <div class="tool-icon"><img src="img/tools/js.svg" alt="" loading="lazy"><span class="tool-name">JavaScript</span></div>
-            <div class="tool-icon"><img src="img/tools/kotlin.svg" alt="" loading="lazy"><span class="tool-name">Kotlin</span></div>
-            <div class="tool-icon"><img src="img/tools/github.svg" alt="" loading="lazy"><span class="tool-name">GitHub</span></div>
-            <div class="tool-icon"><img src="img/tools/vscode.svg" alt="" loading="lazy"><span class="tool-name">VS Code</span></div>
+            <!-- Design -->
+            <div class="tool-icon"><img src="img/tools/figma.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Figma</span></div>
+            <div class="tool-icon"><img src="img/tools/miro.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Miro</span></div>
+            <div class="tool-icon"><img src="img/tools/canva.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Canva</span></div>
+            <!-- Collaboration -->
+            <div class="tool-icon"><img src="img/tools/jira.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Jira</span></div>
+            <div class="tool-icon"><img src="img/tools/confluence.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Confluence</span></div>
+            <div class="tool-icon"><img src="img/tools/microsoft.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Microsoft</span></div>
+            <!-- AI -->
+            <div class="tool-icon"><img src="img/tools/chatgpt.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">ChatGPT</span></div>
+            <div class="tool-icon"><img src="img/tools/claude-code.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Claude Code</span></div>
+            <!-- Creative suite, video, 3D and 2D animation -->
+            <div class="tool-icon"><img src="img/tools/adobe-cc.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Adobe CC</span></div>
+            <div class="tool-icon"><img src="img/tools/ps.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Photoshop</span></div>
+            <div class="tool-icon"><img src="img/tools/ae.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">After Effects</span></div>
+            <div class="tool-icon"><img src="img/tools/davinci-resolve.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">DaVinci Resolve</span></div>
+            <div class="tool-icon"><img src="img/tools/maya.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Autodesk Maya</span></div>
+            <div class="tool-icon"><img src="img/tools/harmony.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Harmony</span></div>
+            <!-- Code -->
+            <div class="tool-icon"><img src="img/tools/html.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">HTML5</span></div>
+            <div class="tool-icon"><img src="img/tools/css.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">CSS3</span></div>
+            <div class="tool-icon"><img src="img/tools/js.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">JavaScript</span></div>
+            <div class="tool-icon"><img src="img/tools/vscode.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">VS Code</span></div>
+            <div class="tool-icon"><img src="img/tools/github.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">GitHub</span></div>
+            <div class="tool-icon"><img src="img/tools/kotlin.svg" alt="" width="28" height="28" loading="lazy"><span class="tool-name">Kotlin</span></div>
           </div>
         </div>
       </div>
@@ -999,12 +947,8 @@
       }, 900);
     });
 
-    const sHdr = document.getElementById('sHdr');
-    sHdr.classList.toggle('scrolled', window.scrollY > 60);
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      document.getElementById('backTop').classList.toggle('on', y > 380);
-      sHdr.classList.toggle('scrolled', y > 60);
+      document.getElementById('backTop').classList.toggle('on', window.scrollY > 380);
     }, {passive:true});
 
     const io = new IntersectionObserver(entries => {
@@ -1026,26 +970,6 @@
         wrap.querySelectorAll('.project-item').forEach(i => { i.style.opacity = ''; });
       });
     })();
-
-    function toggleProjects(btn) {
-      const extras = document.querySelectorAll('.extra-item');
-      const label = document.getElementById('seeMoreLabel');
-      const icon = document.getElementById('seeMoreIcon');
-      const isOpen = btn.getAttribute('aria-expanded') === 'true';
-      if (isOpen) {
-        const allItems = document.querySelectorAll('#allProjects .project-item:not(.extra-item)');
-        const lastVisible = allItems[allItems.length - 1];
-        const targetScrollY = lastVisible ? window.scrollY + lastVisible.getBoundingClientRect().top - 120 : window.scrollY;
-        extras.forEach(el => { el.style.display='none'; el.setAttribute('aria-hidden','true'); el.setAttribute('tabindex','-1'); });
-        btn.setAttribute('aria-expanded','false'); btn.classList.remove('open');
-        label.textContent = 'See More Projects'; icon.style.transform = '';
-        window.scrollTo({top: targetScrollY, behavior: 'instant'});
-      } else {
-        extras.forEach(el => { el.style.display=''; el.removeAttribute('aria-hidden'); el.setAttribute('tabindex','0'); el.classList.add('vis'); });
-        btn.setAttribute('aria-expanded','true'); btn.classList.add('open');
-        label.textContent = 'See Fewer Projects'; icon.style.transform = 'rotate(180deg)';
-      }
-    }
 
     const mBtn=document.getElementById('menuBtn'), drw=document.getElementById('sDrawer'), ovl=document.getElementById('dOverlay'), dX=document.getElementById('dClose');
     function openDrw(){ drw.classList.add('on'); ovl.classList.add('on'); mBtn.setAttribute('aria-expanded','true'); drw.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; dX.focus(); }

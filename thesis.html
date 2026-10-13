@@ -15,644 +15,217 @@
     rel="stylesheet">
   <link rel="stylesheet" href="shared.css">
   <style>
-    :root {
-      color-scheme: light;
-      --accent: #5b21b6;
-      --accent-vivid: #7c3aed;
-      --accent-dim: rgba(91, 33, 182, .12);
-      --accent-pale: #ede9fe;
-      --grad: linear-gradient(135deg, #1e0a4e 0%, #5b21b6 100%);
-      --grad-v: linear-gradient(180deg, #1e0a4e 0%, #5b21b6 100%);
-      --grad-h: linear-gradient(90deg, #1e0a4e 0%, #5b21b6 100%);
-      --hdr-bg: #0f0a14;
-      --radius-btn: 100px;
-      --font: 'Open Sans', system-ui, sans-serif;
-      --max: 1200px;
-      --gutter: clamp(20px, 5vw, 80px);
-      --bg-a: #ffffff;
-      --bg-b: #f5f5f7;
-      --text: #1c1410;
-      --text-mid: #2a2020;
-      --text-muted: #666060;
-      --border: rgba(0, 0, 0, .09);
-      --card-bg: #ffffff;
-      --shadow: 0 2px 20px rgba(0, 0, 0, .07);
-      --shadow-card: 0 4px 28px rgba(0, 0, 0, .10);
-      --hdr-h: 68px;
-      --tag-h: 44px;
-    }
-
-    /* ── TAG NAV ── */
-    #tag-nav {
-      position: sticky; top: var(--hdr-h); z-index: 399;
-      background: #fff;
-      border-bottom: 1px solid rgba(0,0,0,.08);
-      box-shadow: 0 2px 16px rgba(0,0,0,.06);
-      padding: 0 var(--gutter);
-    }
-    .tag-nav-inner { max-width: var(--max); margin: 0 auto; width: 100%; display: flex; align-items: center; gap: 0; flex-wrap: wrap; }
-    .tag-nav-inner a {
-      display: inline-flex; align-items: center; justify-content: center;
-      flex: 1 1 auto; min-height: 44px; padding: 0 10px;
-      font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 500;
-      color: var(--text-mid); text-decoration: none;
-      transition: color .2s; white-space: nowrap; position: relative;
-    }
-    .tag-nav-inner a:hover { color: var(--accent); }
-    .tag-nav-inner a::after { display: none; }
-    .tag-nav-inner a span { position: relative; padding-bottom: 2px; }
-    .tag-nav-inner a span::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1.5px; background: var(--grad-h); border-radius: 2px; transition: width .3s; }
-    .tag-nav-inner a:hover span::after { width: 100%; }
-    .tag-nav-inner a:focus-visible { outline: 2px solid var(--accent-vivid); outline-offset: -2px; }
-
     /* ── HERO — split: white left, purple right ─────────────────────────────── */
-    .hero-section {
-      margin-top: var(--hdr-h);
-      min-height: calc(100svh - var(--hdr-h));
-      background: var(--bg-a);
-      overflow: hidden;
-      padding: 0 var(--gutter);
-      display: flex;
-      align-items: stretch;
-    }
-
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 100%;
-      max-width: var(--max);
-      margin: 0 auto;
-      align-items: stretch;
-    }
-
-    @media(max-width:860px) {
-      .hero-inner {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .hero-text {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      padding: clamp(2rem, 5vw, 4rem) 2.5rem clamp(2rem, 5vw, 4rem) 0;
-      justify-content: center;
-      opacity: 0;
-      animation: fadeUp .9s .4s ease forwards;
-    }
-
-    .hero-eye {
-      font-size: 11px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      font-weight: 500;
-      display: flex;
-      align-items: center;
-      gap: 13px;
-    }
-
-    .hero-eye::before {
-      content: '';
-      width: 28px;
-      height: 1.5px;
-      background: var(--accent);
-      border-radius: 2px;
-      opacity: .35;
-    }
-
-    .hero-title {
-      color: var(--text);
-    }
-
-    .hero-title em {
-      font-style: normal;
-      color: var(--accent);
-    }
-
-    .hero-sub {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.82;
-      font-weight: 400;
-      max-width: 420px;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .4rem;
-    }
-
-    .hero-badge {
-      font-size: 11px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      border: 1px solid var(--accent-dim);
-      padding: 4px 12px;
-      border-radius: var(--radius-btn);
-      font-weight: 600;
-      display: inline-flex;
-      color: var(--accent);
-    }
-
-    .hero-badge-filled {
-      background: var(--accent);
-      border-color: transparent;
-      color: #fff;
-    }
-
-    .hero-mock {
-      width: 100%;
-      align-self: center;
-      overflow: hidden;
-      opacity: 0;
-      animation: fadeUp .9s .65s ease forwards;
-    }
-
-    .hero-mock img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* ── RESEARCH CARD ───────────────────────────────────────────────────────── */
-    .research-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.4rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .research-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--grad);
-      border-radius: 2px;
-      transition: width .45s ease;
-    }
-
-    .research-card:hover::after {
-      width: 100%;
-    }
-
-    .research-card:hover .sec-h4 {
-      color: var(--accent);
-    }
-
-    .research-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--accent-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: .85rem;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .research-card p {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-top: .4rem;
-    }
-
-    /* ── CONCEPT SECTION ─────────────────────────────────────────────────────── */
-    .framework-section {
-      background: var(--bg-b);
-      padding: clamp(2.5rem, 6vw, 4rem) var(--gutter);
-    }
-
-    .framework-inner {
-      max-width: var(--max);
-      margin: 0 auto;
-    }
-
-    .framework-inner .sec-text {
-      max-width: 600px;
-    }
-
-    .framework-pillars {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.1rem;
-      margin-top: 2rem;
-    }
-
-    .pillar {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: var(--shadow);
-      transition: box-shadow .25s;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-    }
-
-    .pillar::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--grad);
-      border-radius: 2px;
-      transition: width .45s ease;
-    }
-
-    .pillar:hover::after {
-      width: 100%;
-    }
-
-    .pillar-n {
-      font-size: 2.2rem;
-      font-weight: 700;
-      color: var(--accent);
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
-    .pillar-body {
-      flex: 1;
-    }
-
-    .pillar h4 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: .6rem;
-      transition: color .25s;
-    }
-
-    .pillar:hover h4 {
-      color: var(--accent);
-    }
-
-    .pillar p {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.65;
-    }
-
-    /* ── NEXT STEPS CARDS ────────────────────────────────────────────────────── */
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.1rem;
-      margin-top: 2rem;
-    }
-
-    @media(max-width:900px) {
-      .steps-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media(max-width:540px) {
-      .steps-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media(max-width:360px) {
-      .steps-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .step-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: .85rem;
-      flex-shrink: 0;
-    }
-
-    .step-icon.done {
-      background: #dcfce7;
-      color: #16a34a;
-    }
-
-    .step-icon.active {
-      background: var(--accent-pale);
-      color: var(--accent);
-    }
-
-    .step-icon.pending {
-      background: transparent;
-      color: var(--text-muted);
-      border: 1.5px solid var(--border);
-    }
-
-    /* ── PROTOTYPE ───────────────────────────────────────────────────────────── */
-    .proto-note {
-      background: var(--accent-pale);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      border: 1px solid var(--accent-dim);
-      margin-bottom: 2rem;
-      display: flex;
-      gap: .85rem;
-      align-items: flex-start;
-    }
-
-    .proto-note svg {
-      flex-shrink: 0;
-      color: var(--accent);
-      margin-top: 2px;
-    }
-
-    .proto-note p {
-      font-size: 14px;
-      color: var(--text-mid);
-      line-height: 1.7;
-    }
-
-    .proto-note strong {
-      color: var(--accent);
-    }
+    .hero-sub { max-width: 540px; }
 
     /* ── RESEARCH RESULT CARDS (purple) ─────────────────────────────────────── */
-    .result-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.4rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--accent-dim);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .result-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--grad-h);
-      border-radius: 2px;
-      transition: width .45s ease;
-    }
-
-    .result-card:hover::after {
-      width: 100%;
-    }
-
-    .result-card:hover .sec-h4 {
-      color: var(--accent);
-    }
-
-    .result-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--accent-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: .85rem;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .result-card ul {
-      margin: .5rem 0 0;
-      padding-left: 1.1rem;
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
-
-    .result-card ul li {
-      margin-bottom: .2rem;
-    }
 
     /* ── PROBLEM CARDS (purple) ─────────────────────────────────────────────── */
-    .problems-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.1rem;
-      margin-top: 1.5rem;
-    }
 
-    @media(max-width:860px) {
-      .problems-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .problem-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 1.4rem;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--accent-dim);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .problem-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--grad-h);
-      border-radius: 2px;
-      transition: width .45s ease;
-    }
-
-    .problem-card:hover::after {
-      width: 100%;
-    }
-
-    .problem-card:hover .sec-h4 {
-      color: var(--accent);
-    }
-
-    .problem-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--accent-pale);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: .85rem;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .problem-card ul {
-      margin: .5rem 0 0;
-      padding-left: 1.1rem;
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
-
-    .problem-card li {
-      margin-bottom: .2rem;
-    }
-
-    .problem-card .ps-sub {
-      font-size: 11px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: var(--accent);
-      margin: .85rem 0 .25rem;
-    }
-
-    /* ── CONSTRAINT CARDS ───────────────────────────────────────────────────── */
-    .constraints-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.1rem;
-      margin-top: 1.5rem;
-    }
-
-    @media(max-width:900px) {
-      .constraints-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
+    /* ── STORY LAYOUT ADDITIONS ─────────────────────────────────────────────── */
+    .sec-text { max-width: none; }
+    .split .sec-text { max-width: none; }
+    /* groundwork */
+    /* figures */
+    .split { display: grid; grid-template-columns: 1.1fr 1fr; gap: 2.5rem; align-items: center; }
+    @media(max-width:900px) { .split { grid-template-columns: 1fr; gap: 1.5rem; } }
+    /* system pieces */
+    /* hurdles */
+    /* heuristics */
+    /* study */
+    /* charts */
+    .chart-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 24px; box-shadow: var(--shadow); margin-top: 1.5rem; }
+    .chart-card h4 { font-size: 15px; font-weight: 700; color: var(--text); }
+    .chart-card .cap { font-size: 12px; color: var(--text-muted); margin-top: .25rem; line-height: 1.55; }
+    .legend { display: flex; gap: 1.2rem; margin-top: .9rem; font-size: 11px; color: var(--text-mid); flex-wrap: wrap; }
+    .legend span { display: inline-flex; align-items: center; gap: .45rem; }
+    .legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+    .tip { position: fixed; z-index: 999; pointer-events: none; background: #1c1410; color: #fff; font-size: 12px; line-height: 1.45; padding: 7px 10px; border-radius: 8px; opacity: 0; transition: opacity .12s; max-width: 240px; }
+    .tip.on { opacity: 1; }
+    .ueq { margin-top: 1.1rem; display: grid; gap: .55rem; }
+    .ueq-row { display: grid; grid-template-columns: 120px 1fr 90px; gap: 1rem; align-items: center; }
     @media(max-width:540px) {
-      .constraints-grid {
-        grid-template-columns: 1fr;
-      }
+      .ueq-row { grid-template-columns: 96px 1fr; }
+      .ueq-row .ueq-tag { display: none; }
     }
-
-    .constraint-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+    .ueq-row > span:first-child { font-size: 13px; color: var(--text-mid); }
+    .ueq-bar { position: relative; height: 22px; background: var(--bg-b); border-radius: 4px; }
+    .ueq-bar i { position: absolute; left: 0; top: 0; bottom: 0; background: #8b2348; border-radius: 0 4px 4px 0; }
+    .ueq-bar b { position: absolute; top: 50%; transform: translateY(-50%); font-size: 12px; font-weight: 700; color: var(--text); padding-left: 8px; }
+    .ueq-tag { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-muted); }
+    .ueq-tag.ex { color: var(--accent); }
+    .rb { margin-top: .6rem; }
+    .rb-row { display: grid; grid-template-columns: 130px 1fr; gap: 1rem; align-items: center; padding: .55rem 0; border-bottom: 1px solid var(--border); }
+    @media(max-width:600px) {
+      .rb-row { grid-template-columns: 1fr 64px; }
+      .rb-bars { grid-column: 1 / -1; grid-row: 2; }
     }
+    .rb-label { font-size: 13px; color: var(--text-mid); line-height: 1.35; }
+    .rb-label small { display: block; font-size: 12px; color: var(--text-muted); }
+    .rb-bars { display: grid; gap: 4px; }
+    .rb-bar { height: 18px; }
+    .rb-bar i.pre { background: #e0708a; }
+    .rb .ueq-tag { display: block !important; text-align: right; text-transform: none; letter-spacing: 0; }
 
-    .constraint-top {
-      padding: 1.1rem 1.4rem;
-      min-height: 70px;
-      display: flex;
-      gap: .85rem;
-      align-items: center;
+    /* ── UNIFIED CARD + GRID ── Three fixed card styles, each with exactly ONE headline (h4): 1. Icon card .box > .research-icon + h4 + text/list 2. Number card .box.num-card > .num (standard size from shared.css) + div > h4 + text 3. Plain card .box > h4 + text/list/table/chart No second headline (.tag) inside cards, no custom number sizes. */
+    .box { margin: 0; }
+    .box .tag { display: block; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: .45rem; }
+    .box h4 { font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.45; margin: 0 0 .5rem; }
+    .box h4:last-child { margin-bottom: 0; }
+    .box p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin: 0; }
+    .box .big { font-size: 2rem; font-weight: 700; color: var(--accent); line-height: 1.1; margin-bottom: .4rem; }
+    .box .big small { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+    .box ul { list-style: none; padding-left: 0; margin: 0; }
+    .box li { display: block; position: relative; padding-left: 1rem; font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: .35rem; }
+    .box li:last-child { margin-bottom: 0; }
+    .box li::before { position: absolute; left: 0; top: .62em; margin-top: 0; }
+    .box b { color: var(--text); }
+    .chart-card.box { margin-top: 0; display: flex; flex-direction: column; }
+    .grid { display: grid; gap: 1rem; margin-top: 1.5rem; align-items: stretch; }
+    .g2 { grid-template-columns: repeat(2, 1fr); }
+    .g3 { grid-template-columns: repeat(3, 1fr); }
+    .g4 { grid-template-columns: repeat(4, 1fr); }
+    @media(max-width:1000px) { .g4 { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width:860px) { .g3 { grid-template-columns: 1fr; } }
+    @media(max-width:760px) { .g2 { grid-template-columns: 1fr; } }
+    @media(max-width:480px) { .g4 { grid-template-columns: 1fr; } }
+    .cite { font-size: 11px; font-weight: 600; color: var(--accent); text-decoration: none; margin-left: 2px; white-space: nowrap; }
+    .cite:hover { text-decoration: underline; }
+    .ba { position: relative; }
+    .ba.before img { filter: grayscale(1); }
+    .ba.before .ba-label { background: #3a3a3a; }
+
+    /* ── v3 ADDITIONS ── */
+    .stack { display: grid; gap: 1rem; align-content: start; }
+    .split > .fig, .split > .stack, .split > .box { align-self: center; }
+    .box p.q { font-size: 15px; color: var(--text-mid); line-height: 1.6; }
+    .steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+    .steps li { display: block; padding: 0 0 1rem; margin: 0; border-bottom: 1px solid var(--border); }
+    .steps li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .steps li::before { content: none; }
+    .steps h4 { margin-bottom: .25rem; }
+    .dt { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .dt td { padding: .55rem .6rem .55rem 0; border-bottom: 1px solid var(--border); color: var(--text-muted); vertical-align: middle; line-height: 1.45; }
+    .dt td:first-child { color: var(--text-mid); font-weight: 600; width: 22%; min-width: 150px; }
+    .dt tr.final td:first-child { color: var(--accent); }
+    .dt td:nth-child(2) { width: 1%; white-space: nowrap; }
+    .pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; background: var(--accent); color: #fff; }
+    .pill.muted { background: var(--bg-b); color: var(--text-muted); }
+    .nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: center; }
+    .nums .big { margin-bottom: .15rem; }
+    .fig video { width: 100%; height: auto; display: block; background: #fff; }
+    .fig.even { display: flex; flex-direction: column; }
+    .fig.even .media { height: 210px; padding: 12px; display: flex; align-items: center; justify-content: center; background: #fff; }
+    .fig.even .media img { max-width: 100%; max-height: 100%; width: auto; height: auto; }
+    .fig.even figcaption { flex: 1; font-size: 11px; padding-left: .7rem; padding-right: .7rem; }
+    .legend i.pre, .rb-bar i.pre { background: #b9b3b3; }
+    .legend i.post { background: #8b2348; }
+    @media(max-width:600px) {
+      .rb-row { grid-template-columns: 1fr; }
+      .rb-bars { grid-column: auto; grid-row: auto; }
     }
+    .sources-note { margin-top: 1rem; border-radius: 10px; border: 1px solid var(--border); background: var(--card-bg); overflow: hidden; }
+    .sources-summary { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: .6rem 1rem; cursor: pointer; list-style: none; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); user-select: none; }
+    .sources-summary::-webkit-details-marker { display: none; }
+    .sources-summary:hover { color: var(--accent); }
+    .sources-summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+    .sources-chevron { width: 14px; height: 14px; flex-shrink: 0; transition: transform .3s; }
+    details[open] .sources-chevron { transform: rotate(180deg); }
+    .sources-body { padding: 0 1rem .9rem; }
+    .sources-body ol { list-style: decimal; padding-left: 1.2rem; margin: 0; }
+    .sources-body li { display: list-item; font-size: 11px; color: var(--text-muted); line-height: 1.5; margin-bottom: .3rem; scroll-margin-top: calc(var(--hdr-h) + var(--tag-h) + 16px); }
+    .sources-body li::before { content: none; }
+    .sources-body li:target { color: var(--text); }
 
-    .cs-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    /* ── v4 ADDITIONS ── */
+    .ba img, .ba video { aspect-ratio: 16 / 10; object-fit: contain; background: #fff; }
+    .ueq-card .chart-card { border: 0; box-shadow: none; padding: 0; margin: 0; background: none; }
+    .hero-inner { align-items: center; }
+    .hero-mock img { aspect-ratio: 3 / 4; object-fit: contain; }
+    @media(max-width:860px) { .hero-mock img { aspect-ratio: 4 / 3; } }
+    .split.s13 { grid-template-columns: 1fr 1.6fr; }
+    @media(max-width:900px) { .split.s13 { grid-template-columns: 1fr; } }
+    .rq-head { margin-top: 3rem; padding-top: 2rem; border-top: 1.5px solid var(--accent-dim); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+    .rq-head .tag { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--accent); }
+    .rq-head h3 { font-size: 20px; font-weight: 700; color: var(--text); margin: 0; }
+    .box.answer p { font-size: 15px; color: var(--text-mid); }
+    .rb-row.faded { opacity: .7; }
+    .rb-row.faded.first { border-top: 2px solid rgba(0,0,0,.28); }
+    .legend-bottom { margin-top: 1rem; }
+    .chart-card.box .rb { flex: 1; }
+    .sec-text.narrow { max-width: 880px; }
+    .g-ba { grid-template-columns: 2fr 3fr; align-items: center; }
+    @media(max-width:760px) { .g-ba { grid-template-columns: 1fr; } }
+    .ba.before { opacity: .55; }
+    .ba.after { border: 2px solid var(--accent); }
+    .split.eq { align-items: stretch; }
+    .split.eq > .box, .split.eq > .fig { align-self: stretch; }
+    .split.eq > .fig { display: flex; flex-direction: column; justify-content: center; background: #fff; }
+    .split.eq > .fig img { flex: 1; min-height: 0; object-fit: contain; }
+    .dt tr.final td { border-bottom: 2px solid rgba(0,0,0,.28); }
+    .dt tr:last-child td { border-bottom: 0; }
+    .inline-fig { margin: 1rem 0 0; }
+    .inline-fig img { width: 100%; height: auto; display: block; border-radius: 8px; background: #fff; }
+    .inline-fig figcaption { font-size: 12px; color: var(--text-muted); margin-top: .4rem; }
+    .ueq-card { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: center; }
+    @media(max-width:860px) { .ueq-card { grid-template-columns: 1fr; } }
+    .ueq-card .chart-card h4 { margin-bottom: .25rem; }
+    .score-card { position: relative; }
+    .score-card > h4, .score-card > p { padding-right: 5.6rem; }
+    .score { position: absolute; top: 1.1rem; right: 1.1rem; padding: .45rem .95rem; border-radius: 100px; background: var(--accent); color: #fff; display: inline-flex; align-items: baseline; gap: 1px; font-weight: 700; font-size: 15px; line-height: 1; white-space: nowrap; }
+    .score small { font-weight: 400; font-size: 11px; opacity: .9; }
+    .qt { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 12px; font-variant-numeric: tabular-nums; }
+    .qt th { text-align: left; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 700; padding: .9rem .4rem .35rem; border-bottom: 1px solid var(--accent-dim); }
+    .qt td { padding: .32rem .4rem; color: var(--text-muted); border-bottom: 1px solid var(--border); line-height: 1.4; }
+    .qt td:nth-child(2) { width: 14px; padding: 0; text-align: center; }
+    .qt th:last-child, .qt td:last-child { text-align: right; width: 28px; }
+    .qt th:last-child { text-transform: none; font-style: italic; }
+    .qt tr.hl td { color: var(--text-mid); font-weight: 400; background: #ececef; }
+    .qt tr.none td { color: var(--text-muted); background: none; }
+    .qt .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; vertical-align: middle; }
+    .qt .dot.g { background: #22a046; }
+    .qt .dot.o { background: #f0a030; }
 
-    .cs-icon.constraint-icon {
-      background: var(--accent-pale);
-      color: var(--accent);
-    }
+    /* ── unified card behaviour (matches .card in shared.css) ── */
+    .box .research-icon { margin-bottom: .75rem; }
+    .qt-key { display: flex; gap: .4rem 1rem; margin-top: .8rem; font-size: 11px; color: var(--text-muted); flex-wrap: wrap; }
+    .qt-key span { display: inline-flex; align-items: center; gap: .4rem; }
 
-    .cs-icon.solution-icon {
-      background: #dcfce7;
-      color: #16a34a;
-    }
-
-    .solution-bottom {
-      padding: 1.1rem 1.4rem;
-      background: #f0fdf4;
-      border-top: 1px solid rgba(22, 163, 74, .2);
-      display: flex;
-      gap: .85rem;
-      align-items: center;
-    }
-
-    .constraint-card ul {
-      margin: 0;
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .constraint-top ul {
-      color: var(--text-muted);
-      padding-left: 1.1rem;
-      list-style: none;
-    }
-
-    .solution-bottom ul {
-      color: var(--text-muted);
-      padding-left: 1.1rem;
-      list-style: disc;
-    }
-
-    .solution-bottom ul li::marker {
-      color: #16a34a;
-    }
-
-    /* ── PROTOTYPE CARDS ────────────────────────────────────────────────────── */
-    .proto-cards .card.img-card {
-      display: flex;
-      flex-direction: column;
-      padding: 0;
-      min-height: unset;
-    }
-
-    .img-card-photo {
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .img-card-photo img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .img-card-photo.natural {
-      aspect-ratio: unset;
-    }
-
-    .img-card-photo::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 40%;
-      background: linear-gradient(to top, var(--card-bg) 0%, transparent 100%);
-      pointer-events: none;
-    }
-
-    .img-card-body {
-      padding: 18px 22px 22px;
-    }
-
+    /* ── v5: review round ── */
+    .box.focus { border: 2px solid var(--accent); }
+    .box.rq { background: var(--grad); border-color: transparent; }
+    .box.rq h4, .box.rq:hover h4, .box.rq p.q, .box.rq b { color: #fff; }
+    .box.rq h4 { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; opacity: .8; }
+    .box.rq p.q { font-size: 15px; line-height: 1.6; font-weight: 500; }
+    .box.rq::after { background: rgba(255,255,255,.6); }
+    /* image takes exactly the height of the card(s) next to it, never cropped */
+    .fig.fit { position: relative; align-self: stretch; background: #fff; min-height: 0; }
+    .fig.fit img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 10px; }
+    @media(max-width:900px) { .fig.fit img { position: static; height: auto; padding: 0; } }
+    .split.eq > .stack { align-content: stretch; }
+    .score-card > ul { margin-top: .2rem; }
+    .box.answer { display: flex; gap: 1.1rem; align-items: center; }
+    .box.answer .research-icon { margin: 0; }
+    .qt .dot.n { background: #b9b3b3; }
+    .qt-key .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+    .qt-key .dot.n { background: #b9b3b3; }
+    /* colour-blind safe: dark green vs bright orange (OKLab ΔE ≥ 27 for protan/deutan/tritan) + shape difference */
+    .qt .dot.g, .qt-key .dot.g { background: #0f6b3a; }
+    .qt .dot.o, .qt-key .dot.o { background: #f7a928; border-radius: 1px; transform: rotate(45deg); }
+    .qt .dot.n, .qt-key .dot.n { background: none; box-shadow: inset 0 0 0 1.5px #9a9494; }
+    .chart-card .cap.small { font-size: 11px; }
+    .dt td:last-child { line-height: 1.55; }
+    .score.dur { font-weight: 400; font-size: 13px; }
+    /* future-work captions: sized to stay on one line at desktop width */
+    /* results: answer + UEQ text at the same size as body text on other cards */
+    .box.answer p, .ueq-card p.q { font-size: 14px; line-height: 1.7; }
+    /* text and image side by side inside one card */
+    .side { display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.75rem; align-items: center; }
+    .side .inline-fig { margin: 0; }
+    @media(max-width:760px) { .side { grid-template-columns: 1fr; gap: 1rem; } }
+    /* links in the sources list look like the rest of the text */
+    .sources-body a, .sources-body a:visited { color: inherit; text-decoration: none; }
+    .sources-body a:hover, .sources-body a:focus-visible { text-decoration: underline; }
   </style>
 </head>
 
@@ -791,23 +364,23 @@
       <div class="hero-text">
         <p class="hero-eye" aria-hidden="true">M.Sc. Media Informatics · LMU Munich</p>
         <h1 class="hero-title">Turning Passive Screens into<br><em>Interactive Security Awareness.</em></h1>
-        <p class="hero-sub">How do you make people actually stop and engage with IT security content in a busy
-          workplace? My thesis tackles this by designing an AI-powered framework that generates comic-style stop motion
-          narratives — turning overlooked public displays into decision-based learning experiences that earn attention
-          rather than demand it.</p>
+        <p class="hero-sub">In my master thesis <b>"Design and Evaluation of AI-Generated Storytelling Content for Public
+          Security User Interfaces"</b> I designed, built and evaluated a system that turns cybersecurity scenarios into
+          short, interactive AI-generated stories on a public display. Written at LMU Munich, examined by Prof. Dr.
+          Florian Alt and supervised by Doruntina Murtezaj &amp; Dr.-Ing. Marco Gutfleisch, in cooperation with Thalia
+          Bücher GmbH.</p>
         <div class="hero-meta" role="list" aria-label="Project metadata">
-          <span class="hero-badge" role="listitem">Dec 2025 – Jul 2026</span>
+          <span class="hero-badge" role="listitem">Dec 2025 – Oct 2026</span>
           <span class="hero-badge" role="listitem">Master Thesis</span>
-          <span class="hero-badge" role="listitem">Industry Cooperation</span>
-          <span class="hero-badge" role="listitem">UX & Interaction Design</span>
-          <span class="hero-badge" role="listitem">UX Research</span>
-          <span class="hero-badge" role="listitem">AI Prompt Engineering</span>
+          <span class="hero-badge" role="listitem">UX &amp; Interaction Design</span>
+          <span class="hero-badge" role="listitem">Complex Mixed-Methods Study</span>
+          <span class="hero-badge" role="listitem">AI Vibe Coding</span>
         </div>
       </div>
       <div class="hero-mock" role="img" aria-label="Thesis prototype screenshot">
         <picture>
           <source media="(max-width: 860px)" srcset="img/thesis/MasterThesis.png">
-          <img src="img/thesis/MasterThesis%20-%20HF.png" alt="AI-powered public display prototype for security awareness learning">
+          <img src="img/thesis/MasterThesis%20-%20HF.png" alt="AI-generated comic story running on the public display prototype">
         </picture>
       </div>
     </div>
@@ -816,482 +389,669 @@
   <!-- TAG NAV -->
   <nav id="tag-nav" aria-label="Page sections">
     <div class="tag-nav-inner">
-      <a href="#overview"><span>Overview</span></a>
-      <a href="#research"><span>Research</span></a>
-      <a href="#problems"><span>Problems</span></a>
-      <a href="#constraints"><span>Constraints & Solutions</span></a>
-      <a href="#framework"><span>Concept</span></a>
-      <a href="#prototype"><span>Prototype</span></a>
-      <a href="#next-steps"><span>Next Steps</span></a>
+      <a href="#workflow"><span>Workflow</span></a>
+      <a href="#overview"><span>Research Overview</span></a>
+      <a href="#system"><span>System</span></a>
+      <a href="#content"><span>Content Generation</span></a>
+      <a href="#display"><span>Public Display</span></a>
+      <a href="#study"><span>User Study &amp; Results</span></a>
+      <a href="#future"><span>Future</span></a>
+      <a href="#reflection"><span>Reflection</span></a>
     </div>
   </nav>
 
   <main id="main-content">
 
-    <!-- OVERVIEW -->
-    <section id="overview" style="background:var(--bg-b);" aria-labelledby="overview-h">
+    <!-- WORKFLOW -->
+    <section id="workflow" aria-labelledby="workflow-h">
       <div class="inner">
-        <div class="two-col" style="align-items:center;">
-          <div>
-            <div class="sec-label reveal">Setting the Scene</div>
-            <h2 class="sec-h2 reveal" id="overview-h">Security training exists.<br>Engagement & awareness doesn't.</h2>
-            <p class="sec-text reveal" style="margin-top:.5rem;">In collaboration with the IT security department of a
-              ~7,000-employee company, this thesis explores how four public displays — installed across their office
-              buildings — can deliver security awareness content that employees actually absorb. No mandatory training.
-              No extra effort. Just relevant moments built into their everyday environment.</p>
-          </div>
-          <div>
-            <div class="status-banner reveal" style="margin-bottom:1.5rem;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 6v6l4 2" />
-              </svg>
-              <p><strong>Work in progress.</strong> This thesis is currently in its prototyping phase. Real-environment
-                testing and formal validation have not yet been conducted.</p>
+        <div class="sec-label reveal">Workflow</div>
+        <h2 class="sec-h2 reveal" id="workflow-h">Ten months, a lot of iterations.</h2>
+
+        <div class="grid g2 reveal">
+          <div class="box num-card"><div class="num" aria-hidden="true">01</div>
+            <div>
+              <h4>Research with papers &amp; Miro</h4>
+              <p>Read a lot of papers and gained insight into different topics. Then mind mapping and summarizing all
+                information, inspiration and ideas on Miro.</p>
             </div>
-            <div class="card reveal">
-              <div class="sec-h4">Research Topic</div>
-              <p style="font-size:14px; color:var(--text-mid); line-height:1.7;">"Design and evaluation of an AI-driven
-                video generation framework for IT security awareness content on public displays"</p>
+          </div>
+          <div class="box num-card"><div class="num" aria-hidden="true">02</div>
+            <div>
+              <h4>Flows &amp; sketches in Figma</h4>
+              <p>Many flow diagrams for the AI generation tool, iterated several times. First sketches for the public display
+                content, then basic and later more detailed Figma prototypes.</p>
+            </div>
+          </div>
+          <div class="box num-card"><div class="num" aria-hidden="true">03</div>
+            <div>
+              <h4>Build &amp; test with Claude Code and the display</h4>
+              <p>Once the flow was fixed, I vibe coded the tool with Claude Code and iterated it along usability heuristics
+                and team feedback. Display prototypes were iterated in the team, tested on the display, then iterated again.</p>
+            </div>
+          </div>
+          <div class="box num-card"><div class="num" aria-hidden="true">04</div>
+            <div>
+              <h4>Study &amp; analysis with Jupyter and Atlas.ti</h4>
+              <p>Several sessions to iterate the study design, to make it as trustworthy as possible with the least side
+                effects. After another student connected my display content to the system, we recruited participants. Five
+                weeks of study, then analysis, graphics, interpretation and the final research documents.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- RESEARCH -->
-    <section id="research" style="background:var(--bg-a);" aria-labelledby="research-h">
+    <!-- RESEARCH OVERVIEW -->
+    <section id="overview" aria-labelledby="overview-h">
       <div class="inner">
-        <div class="sec-label reveal">Literature Research</div>
-        <h2 class="sec-h2 reveal" id="research-h">Starting with what the research told me.</h2>
-        <p class="sec-text reveal">Security awareness works through passive, repeated exposure — not effortful training. The core finding: existing formats fail not because employees don't care, but because they compete for attention rather than working with it.</p>
+        <div class="sec-label reveal">Research Overview</div>
+        <h2 class="sec-h2 reveal" id="overview-h">Three research areas,<br>one research gap.</h2>
+        <p class="sec-text reveal">My research builds on three main research areas as its foundation. The thesis is part of a
+          team project in which several students worked together with the company Thalia Bücher GmbH. On this page I only
+          present the parts I did myself, not the work of the other students.</p>
 
-        <div class="cards-grid reveal">
-          <div class="result-card">
-            <div class="result-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-            </div>
-            <div class="sec-h4">Security Awareness</div>
-            <ul>
-              <li>Needs to be embedded into daily routines</li>
-              <li>Supports passive learning &amp; repeated exposure</li>
-              <li>Ongoing process, not a one-time intervention</li>
-            </ul>
-          </div>
-
-          <div class="result-card">
-            <div class="result-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="3" width="20" height="14" rx="2" />
-                <path d="M8 21h8M12 17v4" />
-              </svg>
-            </div>
-            <div class="sec-h4">Public Displays</div>
-            <ul>
-              <li>Should be participatory spaces</li>
-              <li>Encourage interaction, social acceptability &amp; lightweight engagement</li>
-              <li>Motivation via curiosity, challenge, feedback &amp; playfulness</li>
-            </ul>
-          </div>
-
-          <div class="result-card">
-            <div class="result-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path
-                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg>
-            </div>
-            <div class="sec-h4">Successful Interaction Design</div>
-            <ul>
-              <li>Immediate feedback, clear affordances &amp; minimal effort</li>
-              <li>Playfulness with low social risk extends engagement &amp; discovery</li>
-              <li>Visible responsiveness &amp; clarity feel reliable</li>
-            </ul>
-          </div>
-
-          <div class="result-card">
-            <div class="result-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0" />
-                <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2" />
-                <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8" />
-                <path
-                  d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
-              </svg>
-            </div>
-            <div class="sec-h4">Public Displays Interaction Type</div>
-            <ul>
-              <li>Touchless reduces hygiene concerns &amp; social pressure</li>
-              <li>Movement, gesture &amp; gaze work well publicly</li>
-              <li>Simple, iconic gestures most successful</li>
-
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROBLEMS -->
-    <section id="problems" style="background:var(--bg-b);" aria-labelledby="problems-h">
-      <div class="inner">
-        <div class="sec-label reveal">Problems</div>
-        <h2 class="sec-h2 reveal" id="problems-h">Identifying the problems of public displays ...</h2>
-        <p class="sec-text reveal">Before designing a solution, the research surfaced a clear set of recurring problems
-          across security awareness, engagement, and interaction design in public contexts.</p>
-
-        <div class="problems-grid reveal">
-          <div class="problem-card">
-            <div class="problem-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                <line x1="12" y1="8" x2="12" y2="12" />
-                <line x1="12" y1="16" x2="12.01" y2="16" />
-              </svg>
-            </div>
-            <div class="sec-h4">Security Awareness Problems</div>
-            <ul>
-              <li>Programs often don't reliably change behavior</li>
-              <li>Security is disconnected from daily environments</li>
-              <li>Users rarely seek security information</li>
-              <li>Behavioral outcomes remain weak</li>
-            </ul>
-          </div>
-
-          <div class="problem-card">
-            <div class="problem-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path
-                  d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
-                <line x1="1" y1="1" x2="23" y2="23" />
-              </svg>
-            </div>
-            <div class="sec-h4">Engagement &amp; Visibility Problems</div>
-            <ul>
-              <li>Low engagement with public displays</li>
-              <li>Display blindness — screens get ignored</li>
-              <li>Social inhibition reduces participation</li>
-              <li>Attention thresholds are underestimated</li>
-            </ul>
-          </div>
-
-          <div class="problem-card">
-            <div class="problem-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path
-                  d="M10.5 20H4a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2h3.93a2 2 0 0 1 1.66.9l.82 1.2a2 2 0 0 0 1.66.9H20a2 2 0 0 1 2 2v3" />
-                <circle cx="18" cy="18" r="3" />
-                <path d="m22 22-1.5-1.5" />
-              </svg>
-            </div>
-            <div class="sec-h4">Interaction Method Problems</div>
-            <ul>
-              <li>Interactions feel awkward or high-commitment</li>
-              <li>Supported interactions are unclear</li>
-              <li>Public interaction is often poorly designed</li>
-              <li>Context &amp; social norms are ignored in evaluations</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONSTRAINTS -->
-    <section id="constraints" style="background:var(--bg-a);" aria-labelledby="constraints-h">
-      <div class="inner">
-        <div class="sec-label reveal">Constraints &amp; Solutions</div>
-        <h2 class="sec-h2 reveal" id="constraints-h">... and understanding constraints good design can solve.</h2>
-
-        <div class="constraints-grid reveal">
-
-          <div class="constraint-card">
-            <div class="constraint-top">
-              <div class="cs-icon constraint-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              </div>
-              <ul><li>No Sound / No Touch</li></ul>
-            </div>
-            <div class="solution-bottom">
-              <div class="cs-icon solution-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-              </div>
+        <div class="grid g3 reveal">
+          <div class="box">
+            <div>
+              <h4>User-centered security <a class="cite" href="#sources">[1–5]</a></h4>
               <ul>
-                <li>Body movement &amp; position tracking</li>
-                <li>Gesture navigation</li>
-                <li>Ideally touchless interaction</li>
+                <li>Security systems have to be based on user needs and preferences</li>
+                <li>Focus on usability, usable interaction and user feedback</li>
+                <li>Users are an active resource for cybersecurity, not just a risk</li>
+                <li>Knowledge alone rarely changes behavior long-term</li>
               </ul>
             </div>
           </div>
-
-          <div class="constraint-card">
-            <div class="constraint-top">
-              <div class="cs-icon constraint-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              </div>
-              <ul><li>Short Attention Spans</li></ul>
-            </div>
-            <div class="solution-bottom">
-              <div class="cs-icon solution-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-              </div>
+          <div class="box">
+            <div>
+              <h4>Public displays <a class="cite" href="#sources">[6–8]</a></h4>
               <ul>
-                <li>Low-threshold entry</li>
-                <li>Short, step-by-step content</li>
-                <li>Immediate visual reward</li>
+                <li>Displays placed in public and publicly used spaces</li>
+                <li>Because of that, they struggle above all with getting people's attention in the first place</li>
+                <li>Target-group-focused content raises attention and keeps it relevant and understandable</li>
+                <li>This helps prevent display blindness, so the display gets noticed at all</li>
               </ul>
             </div>
           </div>
-
-          <div class="constraint-card">
-            <div class="constraint-top">
-              <div class="cs-icon constraint-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              </div>
-              <ul><li>Social Embarrassment</li></ul>
-            </div>
-            <div class="solution-bottom">
-              <div class="cs-icon solution-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-              </div>
+          <div class="box focus">
+            <div>
+              <h4>Public Security User Interfaces <a class="cite" href="#sources">[9]</a></h4>
               <ul>
-                <li>Subtle, non-obvious body movement</li>
-                <li>Private-feeling engagement</li>
-                <li>Optional single-user mode</li>
+                <li>Combine user-centered security and public displays</li>
+                <li>Present and distribute security information in public spaces</li>
+                <li>Gamification and storytelling can promote security awareness and engagement</li>
+                <li>The CyberFrame project found that AI comics are very well suited for cybersecurity education <a class="cite" href="#sources">[10]</a></li>
               </ul>
             </div>
           </div>
-
-          <div class="constraint-card">
-            <div class="constraint-top">
-              <div class="cs-icon constraint-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              </div>
-              <ul><li>Diverse User Groups</li></ul>
-            </div>
-            <div class="solution-bottom">
-              <div class="cs-icon solution-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-              </div>
-              <ul>
-                <li>Accessibility-first design</li>
-                <li>Clear visuals &amp; simple instructions</li>
-                <li>Multiple scenario categories</li>
-                <li>Adjustable complexity</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="constraint-card">
-            <div class="constraint-top">
-              <div class="cs-icon constraint-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              </div>
-              <ul><li>Physical Display Limitations</li></ul>
-            </div>
-            <div class="solution-bottom">
-              <div class="cs-icon solution-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-              </div>
-              <ul>
-                <li>Important content centered</li>
-                <li>Large, readable design</li>
-                <li>Minimal clutter</li>
-                <li>Display-aware sizing</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="constraint-card">
-            <div class="constraint-top">
-              <div class="cs-icon constraint-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-              </div>
-              <ul><li>Workplace Environment</li></ul>
-            </div>
-            <div class="solution-bottom">
-              <div class="cs-icon solution-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
-              </div>
-              <ul>
-                <li>Professional but engaging tone</li>
-                <li>Gamification without childishness</li>
-                <li>Casual repeated exposure</li>
-                <li>Quick interactions</li>
-              </ul>
-            </div>
-          </div>
-
         </div>
 
-        <div class="reflection-box reveal" style="margin-top:2rem;">
-          <p>To succeed, a public security user interface should therefore be: <strong>Low-threshold · Socially
-              comfortable · Contextual · Accessible · Playful · Quick</strong></p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONCEPT / FRAMEWORK -->
-    <section class="framework-section" id="framework" aria-labelledby="framework-h">
-      <div class="framework-inner">
-        <div class="sec-label reveal">The concept</div>
-        <h2 class="sec-h2 reveal" id="framework-h">Narrative micro-learning through<br>AI-generated content.</h2>
-        <p class="sec-text reveal">The framework dynamically generates interactive security narratives — <br> each a five-step story in which users shape how their scenario unfolds.</p>
-
-        <div class="framework-pillars reveal">
-          <div class="pillar">
-            <div class="pillar-n">01</div>
-            <div class="pillar-body">
-              <h4>Opportunistic Engagement</h4>
-              <p>Stories surface at the right moment — triggered by context, not by a schedule. Position-aware design and a recurring character draw users in and make them want to see what happens next.</p>
-            </div>
+        <details class="sources-note reveal" id="sources">
+          <summary class="sources-summary">Sources (10) <svg class="sources-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
+          <div class="sources-body">
+            <ol>
+              <li>Zurko, M. E. &amp; Simon, R. T. (1996). User-centered security. <i>Proceedings of the 1996 Workshop on New Security Paradigms (NSPW '96)</i>, pp. 27–33.</li>
+              <li>Nielsen, J. (1994). Enhancing the explanatory power of usability heuristics. <i>Proceedings of CHI '94</i>, pp. 152–158.</li>
+              <li>Norman, D. (2013). <i>The Design of Everyday Things.</i> Basic Books.</li>
+              <li>Zimmermann, V., Schöni, L., Schaltegger, T., Ambuehl, B., Knieps, M. &amp; Ebert, N. (2024). Human-Centered Cybersecurity Revisited: From Enemies to Partners. <i>Commun. ACM</i> 67(11), pp. 72–81.</li>
+              <li>Sasse, M. A., Hielscher, J., Friedauer, J. &amp; Buckmann, A. (2023). Rebooting IT Security Awareness – How Organisations Can Encourage and Sustain Secure Behaviours. In: <i>Computer Security. ESORICS 2022 International Workshops</i>, pp. 248–265.</li>
+              <li>Huang, E. M., Koster, A. &amp; Borchers, J. (2008). Overcoming Assumptions and Uncovering Practices: When Does the Public Really Look at Public Displays? In: <i>Pervasive Computing</i>, LNCS Vol. 5013, pp. 228–243.</li>
+              <li>Parker, C., Tomitsch, M. &amp; Kay, J. (2018). Does the Public Still Look at Public Displays? A Field Observation of Public Displays in the Wild. <i>Proc. ACM Interact. Mob. Wearable Ubiquitous Technol.</i> 2(2).</li>
+              <li>Memarovic, N., Clinch, S. &amp; Alt, F. (2015). Understanding Display Blindness in Future Display Deployments. <i>Proceedings of the 4th International Symposium on Pervasive Displays</i>, pp. 7–14.</li>
+              <li>Murtezaj, D., Paneva, V., Distler, V. &amp; Alt, F. (2024/25). Public Security User Interfaces: Supporting Spontaneous Engagement with IT Security. <i>Proceedings of NSPW '24</i>, pp. 56–70.</li>
+              <li>Barlage, K., Will, M., Hein, O., Mecke, L., Thalhammer, P. &amp; Alt, F. (2026). CyberFrame: AI-Supported Hybrid Comics for Cybersecurity Awareness. In: <i>Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems (CHI EA '26)</i>. <a href="https://doi.org/10.1145/3772363.3798980" target="_blank" rel="noopener noreferrer">doi.org/10.1145/3772363.3798980</a></li>
+            </ol>
           </div>
-          <div class="pillar">
-            <div class="pillar-n">02</div>
-            <div class="pillar-body">
-              <h4>Narrative Decision System</h4>
-              <p>Each scene ends with three choices that steer the story. Five image sequences play out in different orders depending on what the user decides.</p>
-            </div>
+        </details>
+
+        <p class="sec-text reveal" style="margin-top:2rem;">What has not yet been analyzed in sufficient detail is the combination
+          of AI-generated storytelling with a Public Security User Interface. This is the research gap my work is
+          based on. My goal was to develop and evaluate a system that fills exactly this gap, with two research questions
+          that target it directly:</p>
+
+        <div class="grid g2 reveal">
+          <div class="box rq"><h4>Research question 1</h4>
+            <p class="q">How does AI-generated, story-based cybersecurity content on a public display influence <b>users' risk
+              perception and behavior</b>?</p>
           </div>
-          <div class="pillar">
-            <div class="pillar-n">03</div>
-            <div class="pillar-body">
-              <h4>AI Content Scalability</h4>
-              <p>Modular story structures and reusable prompts enable AI to generate consistent narratives and visuals at scale — no hand-crafting required for each scenario.</p>
-            </div>
+          <div class="box rq"><h4>Research question 2</h4>
+            <p class="q">How does AI-generated, story-based cybersecurity content on a public display influence the <b>user
+              experience</b>?</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROTOTYPE -->
-    <section id="prototype" style="background:var(--bg-a);" aria-labelledby="prototype-h">
+    <!-- SYSTEM -->
+    <section id="system" aria-labelledby="system-h">
       <div class="inner">
-        <div class="sec-label reveal">Prototyping</div>
-        <h2 class="sec-h2 reveal" id="prototype-h">Building from framework to the first interface.</h2>
+        <div class="sec-label reveal">The System</div>
+        <h2 class="sec-h2 reveal" id="system-h">First, we developed a complete system.</h2>
+        <p class="sec-text reveal">With an AI-powered content generation tool, people from companies, universities or anyone
+          who wants to display security content can create content packages step by step with the help of AI and then
+          export them.</p>
 
-        <div class="cards-grid-3 proto-cards reveal" role="list">
-          <div class="card img-card" role="listitem">
-            <div class="img-card-photo natural">
-              <img src="img/thesis/Flow.jpg" alt="Research framework structure" loading="lazy">
-            </div>
-            <div class="img-card-body">
-              <div class="sec-h4">Research &amp; Mind Mapping</div>
-              <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Structured
-                exploration — topic research, literature synthesis, and prompt engineering
-                experiments to understand AI content generation constraints and opportunities.</p>
+        <div class="split s13 eq reveal" style="margin-top:1.5rem;">
+          <div class="stack">
+          <div class="box num-card"><div class="num" aria-hidden="true">01</div>
+            <div>
+              <h4>AI content generation tool</h4>
+              <p>Create the content package step by step with AI, then export and download it.</p>
             </div>
           </div>
-          <div class="card img-card" role="listitem">
-            <div class="img-card-photo natural">
-              <img src="img/thesis/Prototype.png"
-                alt="Prototype UI for the public display — comic style with character guide" loading="lazy">
-            </div>
-            <div class="img-card-body">
-              <div class="sec-h4">Prototype UI · Public Display</div>
-              <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Interactive interface
-                for the public screen — evolved from live video sequences to a comic-style stop motion narrative format with a
-                recurring guide character accompanying users through the flow.</p>
+          <div class="box num-card"><div class="num" aria-hidden="true">02</div>
+            <div>
+              <h4>Content package</h4>
+              <p>45 images (9 per scene), 5 scene collages, 1 JSON file with all metadata and 1 package collage that sums up the package.</p>
             </div>
           </div>
-          <div class="card img-card" role="listitem">
-            <div class="img-card-photo natural">
-              <img src="img/thesis/Framework.JPG" alt="Admin workflow UI for narrative and image prompt generation"
-                loading="lazy">
-            </div>
-            <div class="img-card-body">
-              <div class="sec-h4">Prototype UI · Admin Workflow</div>
-              <p style="font-size:13px;color:var(--text-muted);line-height:1.65;margin-top:.5rem;">Backend &amp; Frontend for content creators — generation of story narrative &amp; image prompts per scenario, with export of image
-                packages and structured JSONs for display deployment.</p>
+          <div class="box num-card"><div class="num" aria-hidden="true">03</div>
+            <div>
+              <h4>Public display</h4>
+              <p>Shows the content. I also evaluated it extensively in a study, both the content and the engagement with the display.</p>
             </div>
           </div>
+          </div>
+          <figure class="fig fit">
+            <img src="img/thesis/system.png" alt="System overview: the AI-based content generation tool exports a cybersecurity storytelling content package, which is uploaded to the display content management system and backend, and then shown on the public display. The content management system, backend and hardware were the work of another student." loading="lazy">
+          </figure>
         </div>
       </div>
     </section>
 
-    <!-- NEXT STEPS -->
-    <section id="next-steps" style="background:var(--bg-b);" aria-labelledby="next-h">
+    <!-- CONTENT GENERATION: the content -->
+    <section id="content" aria-labelledby="content-h">
       <div class="inner">
-        <div class="sec-label reveal">What Comes Next</div>
-        <h2 class="sec-h2 reveal" id="next-h">The road to validation.</h2>
-        <p class="sec-text reveal">Research and initial framework design are complete. The focus now shifts to
-          real-environment testing and iterative refinement before the thesis submission.</p>
+        <div class="sec-label reveal">Content Generation</div>
+        <h2 class="sec-h2 reveal" id="content-h">Many ideas tested, only a few kept.</h2>
+        <p class="sec-text reveal">Our format changed a lot along the way. We had a lot of ideas that we tested, iterated and
+          sometimes dropped. We wanted a system that is efficient and doesn't cost an enormous amount, otherwise it wouldn't
+          be scalable or really relevant for the company.</p>
 
-        <div class="steps-grid reveal" role="list">
-          <div class="research-card" role="listitem">
-            <div class="step-icon done" aria-label="Done">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20 6 9 17l-5-5" />
-              </svg>
-            </div>
-            <div class="sec-h4">Research</div>
-            <p>Literature review, mind mapping, and problem space definition.</p>
+        <div class="grid reveal">
+          <div class="box"><h4>Iteration process: Ideas &amp; Formats</h4>
+            <table class="dt">
+              <tbody>
+                <tr><td>Robot companion</td><td><span class="pill muted">Dropped</span></td><td>A robot companion with selectable characters, for gamification. Many iterations in clip-art and video style, plus a video generation tool for its emotions. Dropped to keep the focus on the content.</td></tr>
+                <tr><td>Comic styles</td><td><span class="pill muted">Dropped</span></td><td>Styles like Simpsons, Disney cartoon or realistic, switchable in the answer options. Dropped because of scalability and costs.</td></tr>
+                <tr><td>Start screen: following eyes</td><td><span class="pill muted">Dropped</span></td><td>Eyes that follow people passing by, to gain their attention.</td></tr>
+                <tr><td>Start screen: robot eyes</td><td><span class="pill muted">Dropped</span></td><td>The same eyes, now belonging to the robot character. Dropped together with the robot.</td></tr>
+                <tr><td>Start screen: collage</td><td><span class="pill muted">Dropped</span></td><td>A sneak peek of what happens on the display, shown as a collage.</td></tr>
+                <tr class="final"><td>Start screen: waving characters</td><td><span class="pill">Final</span></td><td>A mix of both ideas: the main characters wave at you, give a sneak peek of the comic and point at the button that starts the interaction.</td></tr>
+                <tr><td>Video</td><td><span class="pill muted">Dropped</span></td><td>Efficiency, AI costs, content consistency</td></tr>
+                <tr><td>Comic-style video</td><td><span class="pill muted">Dropped</span></td><td>Hard to control</td></tr>
+                <tr><td>Comics with text</td><td><span class="pill muted">Dropped</span></td><td>Hard to control, text distracts</td></tr>
+                <tr class="final"><td>Stop-motion images</td><td><span class="pill">Final</span></td><td>Video flow without generating video</td></tr>
+                <tr><td>Speech bubbles</td><td><span class="pill muted">Dropped</span></td><td>Distract from the story</td></tr>
+                <tr class="final"><td>Optional subtitles</td><td><span class="pill">Final</span></td><td>Story stays clear without text</td></tr>
+                <tr><td>More images per scene</td><td><span class="pill muted">Dropped</span></td><td>Generation time and cost</td></tr>
+                <tr class="final"><td>Nine images per scene</td><td><span class="pill">Final</span></td><td>Clear and easy to follow, confirmed in the study</td></tr>
+              </tbody>
+            </table>
           </div>
-          <div class="research-card" role="listitem">
-            <div class="step-icon done" aria-label="Done">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M20 6 9 17l-5-5" />
-              </svg>
+          <div class="box"><h4>Challenges</h4>
+            <div class="side">
+            <ul>
+              <li>API &amp; AI costs (balancing image number)</li>
+              <li>Scalability</li>
+              <li>Efficiency (generation speed and story clarity)</li>
+              <li>Consistency (character style sheets, image quality, foreground action focus instead of every detail)</li>
+              <li>Technical limits (errors of the tool and AI models)</li>
+            </ul>
+            <figure class="inline-fig"><img src="img/thesis/APIfails-errors.png" alt="Four generated images with typical AI errors marked in red" loading="lazy"></figure>
             </div>
-            <div class="sec-h4">Ideation</div>
-            <p>Narrative decision framework, AI content design, and structure &amp; concept definition.</p>
           </div>
-          <div class="research-card" role="listitem">
-            <div class="step-icon active" aria-label="In progress">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M12 6v6l4 2" />
-              </svg>
-            </div>
-            <div class="sec-h4">Prototyping &amp; Iteration</div>
-            <p>First prototypes built, informal walkthroughs conducted, refining narratives, prompts and interaction flows.</p>
+        </div>
+
+        <div class="split s13 eq reveal" style="margin-top:1rem;">
+          <div class="box"><h4>Five scenes, different paths</h4>
+            <p>Each content package tells a story in five scenes: the problem situation, the wrong action, the
+              right action, a risk explanation and a learning summary.</p>
+            <p style="margin-top:.75rem;">After each scene there are two options for moving on to another scene. This creates
+              different paths along which users see the five scenes in different orders. The paths are defined beforehand
+              in the generation tool and the content management system.</p>
           </div>
-          <div class="research-card" role="listitem">
-            <div class="step-icon pending" aria-label="Planned">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-              </svg>
-            </div>
-            <div class="sec-h4">Testing</div>
-            <p>Real-environment deployment, pilot &amp; field study, adjustments according to feedback.</p>
+          <figure class="fig fit">
+            <img src="img/thesis/scenarios3.png" alt="The three packages in the study as nine-image collages: an unknown USB stick in the office, a fake QR code in a café, and a cluttered workspace with sensitive information" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTENT GENERATION: the tool -->
+    <section id="tool" aria-labelledby="tool-h">
+      <div class="inner">
+        <div class="sec-label reveal">AI Content Generation Tool</div>
+        <h2 class="sec-h2 reveal" id="tool-h">From the story to the<br>exportable image package.</h2>
+        <p class="sec-text narrow reveal">To create the packages, we use the AI-powered content generation tool. I developed it with
+          Claude Code and improved it over many iterations based on Nielsen's usability heuristics <a class="cite" href="#sources">[2]</a>
+          and repeated feedback from our team. The final version uses GPT Image 2.0 for image generation and GPT-4.0 for
+          text. We tested several AI models and chose the ones that fit our needs best and produced the best output.</p>
+
+        <div class="grid g-ba reveal">
+          <figure class="fig ba before">
+            <span class="ba-label">Before</span>
+            <img src="img/thesis/Framework.JPG" alt="First version of the content generation tool" loading="lazy">
+          </figure>
+          <figure class="fig ba after">
+            <span class="ba-label">After</span>
+            <video src="img/thesis/ContentCreationTool-web.mp4" poster="img/thesis/generationUI2.JPG" autoplay muted loop playsinline preload="metadata" aria-label="Screen recording of the redesigned content generation tool"></video>
+          </figure>
+        </div>
+
+        <div class="grid g4 reveal">
+          <div class="box"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div><h4>Visibility of system status</h4>
+            <ul>
+              <li>Sidebar, as in many other programs</li>
+              <li>Only current and completed steps are usable</li>
+              <li>Status indicators on every step show the progress</li>
+            </ul>
           </div>
-          <div class="research-card" role="listitem">
-            <div class="step-icon pending" aria-label="Planned">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-              </svg>
-            </div>
-            <div class="sec-h4">Writing</div>
-            <p>Thesis write-up and submission until October 2026.</p>
+          <div class="box"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div><h4>Consistency &amp; standards</h4>
+            <ul>
+              <li>Follows conventions of tools like Canva or Visual Studio Code</li>
+              <li>Consistent layout and icon system</li>
+              <li>Sidebar, top bar and familiar navigation</li>
+            </ul>
+          </div>
+          <div class="box"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h4>Error prevention</h4>
+            <ul>
+              <li>Steps that aren't or are no longer available are locked</li>
+              <li>Warning messages explain what an action will do</li>
+            </ul>
+          </div>
+          <div class="box"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg></div><h4>User control &amp; freedom</h4>
+            <ul>
+              <li>The user stays responsible for the creation process</li>
+              <li>All AI suggestions are editable</li>
+              <li>AI suggestions save time; users with more time or specific ideas can create everything themselves</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- QUOTE -->
-    <section class="quote-section" style="background:var(--bg-a);" aria-label="Core insight">
-      <div class="quote-inner">
-        <div class="sec-label reveal">Core Insight</div>
-        <blockquote class="cit-text reveal">
-          Attention can't be forced. Every medium has its own rules for earning it — and designing to those rules is what turns a passing glance into real interaction.
-        </blockquote>
+    <!-- PUBLIC DISPLAY -->
+    <section id="display" aria-labelledby="display-h">
+      <div class="inner">
+        <div class="sec-label reveal">Public Display UI</div>
+        <h2 class="sec-h2 reveal" id="display-h">The content then runs on the public display.</h2>
+
+        <div class="split eq reveal" style="margin-top:1.5rem;">
+          <div class="box"><h4>Design decisions</h4>
+            <ul>
+              <li>Square images. Landscape leaves empty space on our portrait display, portrait crops the
+                backgrounds too much. Square leaves room for the answer options below.</li>
+              <li>Stable layout. Image at the top as the main focus; subtitles and buttons below. No layout shifts or
+                changing image sizes.</li>
+              <li>Tested on-site. Every prototype was tested on the display and discussed as a team.</li>
+              <li>Scene collages. After each scene, users can go through it again at their own pace.</li>
+              <li>Final collage. Sums up the key takeaway and concludes the story.</li>
+            </ul>
+          </div>
+          <figure class="fig fit">
+            <img src="img/thesis/Public Display UI.png" alt="Four iterations of the public display interface, the last one highlighted" loading="lazy">
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- USER STUDY -->
+    <section id="study" aria-labelledby="study-h">
+      <div class="inner">
+        <div class="sec-label reveal">User Study</div>
+        <h2 class="sec-h2 reveal" id="study-h">A complex study in two phases.</h2>
+        <p class="sec-text reveal">We used a within-subjects design, so the same participants took part in both phases. We
+          recruited through university mailing lists, Slack, WhatsApp and personal contacts. The only requirement was a
+          minimum age of 18; no prior knowledge was needed.</p>
+
+        <div class="split reveal" style="margin-top:1.5rem; align-items:start;">
+          <div class="stack">
+            <div class="box score-card">
+              <h4>Phase 1 · Online via Zoom</h4>
+              <span class="score dur">~ 40 min</span>
+              <ul>
+                <li>Study questionnaire via link: six security scenarios, five answer options each</li>
+                <li>Three cybersecurity scenarios: an unknown USB stick, a cluttered workspace with sensitive information,
+                  a fake QR code in a café</li>
+                <li>Three comparison scenarios with other office security situations</li>
+                <li>Semi-structured interview: participants briefly explained the reasoning behind each answer</li>
+              </ul>
+            </div>
+            <div class="box score-card">
+              <h4>Phase 2 · In the lab on-site</h4>
+              <span class="score dur">~ 50 min</span>
+              <ul>
+                <li>Six to eight days later for all participants, to ensure comparability</li>
+                <li>About ten minutes of interaction with the public display</li>
+                <li>Same questionnaire and scenarios plus a UEQ, via Zoom</li>
+                <li>Same reasoning interview as in phase 1, via Zoom</li>
+                <li>Semi-structured feedback interview on the interaction and the content</li>
+              </ul>
+            </div>
+          </div>
+          <div class="stack">
+            <figure class="fig">
+              <img src="img/thesis/DisplayInteraction.png" alt="Participants interacting with the portrait touch display in the lab" loading="lazy">
+              <figcaption>Participants with the display during phase 2.</figcaption>
+            </figure>
+            <div class="box"><h4>Participants</h4>
+              <div class="nums">
+                <div><div class="big">24</div><p>completed both phases</p></div>
+                <div><div class="big">27.5</div><p>years average age</p></div>
+                <div><div class="big">19 / 5</div><p>female / male</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALYSIS & RESULTS -->
+    <section id="results" aria-labelledby="results-h">
+      <div class="inner">
+        <div class="sec-label reveal">Analysis &amp; Results</div>
+        <h2 class="sec-h2 reveal" id="results-h">Safer intentions.<br>A positive experience.</h2>
+
+        <div class="box reveal" style="margin-top:1.5rem;"><h4>Analysis</h4>
+          <ul>
+            <li>Answer options and scenario order were randomized every time.</li>
+            <li>Because of a minor error, questionnaires and reasoning interviews were analyzed for 20 participants; feedback interviews for all 24.</li>
+            <li>Wilcoxon signed-rank test, paired-samples t-test and inductive thematic analysis in Atlas.ti.</li>
+            <li>Limitations: controlled lab environment and a specific, relatively young participant group.</li>
+          </ul>
+        </div>
+
+        <div class="rq-head reveal">RQ1: Risk perception and behavior</div>
+        <div class="grid g2 reveal" style="margin-top:1rem;">
+          <div class="box chart-card" id="composite-chart">
+            <h4>Behavioral intentions</h4>
+            <p class="cap">Safe-behavior score, 1 to 5. Longer is safer. N = 20.</p>
+            <div class="rb">
+              <div class="rb-row">
+                <span class="rb-label">Unknown USB stick</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:85.8%"></i><b style="left:85.8%">4.29</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:90.0%"></i><b style="left:90.0%">4.50</b></div>
+                </div>
+              </div>
+              <div class="rb-row">
+                <span class="rb-label">Fake QR code</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:72.0%"></i><b style="left:72.0%">3.60</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:77.4%"></i><b style="left:77.4%">3.87</b></div>
+                </div>
+              </div>
+              <div class="rb-row">
+                <span class="rb-label">Untidy desk</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:78.0%"></i><b style="left:78.0%">3.90</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:87.6%"></i><b style="left:87.6%">4.38</b></div>
+                </div>
+              </div>
+              <div class="rb-row">
+                <span class="rb-label">Deepfake call</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:73.2%"></i><b style="left:73.2%">3.66</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:81.0%"></i><b style="left:81.0%">4.05</b></div>
+                </div>
+              </div>
+              <div class="rb-row faded first">
+                <span class="rb-label">Wet floor</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:49.2%"></i><b style="left:49.2%">2.46</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:49.8%"></i><b style="left:49.8%">2.49</b></div>
+                </div>
+              </div>
+              <div class="rb-row faded">
+                <span class="rb-label">Heavy box</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:66.0%"></i><b style="left:66.0%">3.30</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:70.6%"></i><b style="left:70.6%">3.53</b></div>
+                </div>
+              </div>
+            </div>
+            <div class="legend legend-bottom"><span><i class="pre"></i>Before the display interaction</span><span><i class="post"></i>After the display interaction</span></div>
+          </div>
+          <div class="box chart-card" id="risk-chart">
+            <h4>Risk perception</h4>
+            <p class="cap">Agreement with the riskiest option, 1 to 5. Shorter is safer. N = 20.</p>
+            <div class="rb">
+              <div class="rb-row">
+                <span class="rb-label">Unknown USB stick</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:39.0%"></i><b style="left:39.0%">1.95</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:23.0%"></i><b style="left:23.0%">1.15</b></div>
+                </div>
+              </div>
+              <div class="rb-row">
+                <span class="rb-label">Fake QR code</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:49.0%"></i><b style="left:49.0%">2.45</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:28.0%"></i><b style="left:28.0%">1.40</b></div>
+                </div>
+              </div>
+              <div class="rb-row">
+                <span class="rb-label">Untidy desk</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:34.0%"></i><b style="left:34.0%">1.70</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:29.0%"></i><b style="left:29.0%">1.45</b></div>
+                </div>
+              </div>
+              <div class="rb-row">
+                <span class="rb-label">Deepfake call</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:59.0%"></i><b style="left:59.0%">2.95</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:41.0%"></i><b style="left:41.0%">2.05</b></div>
+                </div>
+              </div>
+              <div class="rb-row faded first">
+                <span class="rb-label">Wet floor</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:78.0%"></i><b style="left:78.0%">3.90</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:79.0%"></i><b style="left:79.0%">3.95</b></div>
+                </div>
+              </div>
+              <div class="rb-row faded">
+                <span class="rb-label">Heavy box</span>
+                <div class="rb-bars">
+                  <div class="ueq-bar rb-bar"><i class="pre" style="width:73.0%"></i><b style="left:73.0%">3.65</b></div>
+                  <div class="ueq-bar rb-bar"><i style="width:60.0%"></i><b style="left:60.0%">3.00</b></div>
+                </div>
+              </div>
+            </div>
+            <div class="legend legend-bottom"><span><i class="pre"></i>Before the display interaction</span><span><i class="post"></i>After the display interaction</span></div>
+          </div>
+        </div>
+        <div class="box answer reveal" style="margin-top:1rem;"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/></svg></div>
+          <p>After the display, <b>behavioral intentions became safer and risk perception improved</b>. Concrete actions
+            had the strongest impact: the USB stick and QR code scenarios showed the strongest significant decreases. The
+            heavy box, which wasn't on the display, also improved, which could point to a repetition effect; the wet floor
+            showed no change. Efficiency and time pressure still compete with security.</p>
+        </div>
+
+        <div class="rq-head reveal">RQ2: User experience</div>
+        <div class="box reveal" style="margin-top:1rem;">
+          <div class="ueq-card">
+            <div class="chart-card">
+              <h4>User Experience Questionnaire</h4>
+              <p class="cap">Scale means from −3 to +3, compared against the UEQ benchmark. Bars show 0 to +3.</p>
+              <div class="ueq">
+                <div class="ueq-row"><span>Perspicuity</span><div class="ueq-bar"><i style="width:72.0%"></i><b style="left:72.0%">2.16</b></div><span class="ueq-tag ex">Excellent</span></div>
+                <div class="ueq-row"><span>Attractiveness</span><div class="ueq-bar"><i style="width:65.0%"></i><b style="left:65.0%">1.95</b></div><span class="ueq-tag ex">Excellent</span></div>
+                <div class="ueq-row"><span>Dependability</span><div class="ueq-bar"><i style="width:61.0%"></i><b style="left:61.0%">1.83</b></div><span class="ueq-tag ex">Excellent</span></div>
+                <div class="ueq-row"><span>Efficiency</span><div class="ueq-bar"><i style="width:59.7%"></i><b style="left:59.7%">1.79</b></div><span class="ueq-tag">Good</span></div>
+                <div class="ueq-row"><span>Stimulation</span><div class="ueq-bar"><i style="width:51.3%"></i><b style="left:51.3%">1.54</b></div><span class="ueq-tag">Good</span></div>
+                <div class="ueq-row"><span>Novelty</span><div class="ueq-bar"><i style="width:37.7%"></i><b style="left:37.7%">1.13</b></div><span class="ueq-tag">Good</span></div>
+              </div>
+              <p class="cap small" style="margin-top:1rem;">Excellent = top 10 % of benchmark products. Good = top 25 %.</p>
+            </div>
+            <div>
+              <p class="q">Three of the six UEQ categories reached an excellent rating and three a good rating,
+                so the results were very positive. The feedback interviews gave further insight into the experience.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid g3 reveal" style="margin-top:1rem;">
+          <div class="box score-card"><h4>Story comprehensibility</h4>
+            <span class="score">8.88<small>/10</small></span>
+            <p>Frequently described as understandable and informative.</p>
+            <table class="qt">
+              <thead><tr><th>Reason</th><th></th><th>n</th></tr></thead>
+              <tbody>
+                <tr><td>Confusion about some image details</td><td><i class="dot o"></i></td><td>2</td></tr>
+                <tr class="hl"><td>Clear content</td><td><i class="dot g"></i></td><td>5</td></tr>
+                <tr class="hl"><td>Unclear story flow</td><td><i class="dot o"></i></td><td>4</td></tr>
+                <tr><td>User freedom</td><td><i class="dot g"></i></td><td>1</td></tr>
+                <tr><td>Too high speed and cognitive load</td><td><i class="dot o"></i></td><td>1</td></tr>
+                <tr class="hl"><td>Understandable and informative</td><td><i class="dot g"></i></td><td>10</td></tr>
+                <tr><td>Predictable</td><td><i class="dot o"></i></td><td>1</td></tr>
+                <tr><td>Understanding can be better</td><td><i class="dot o"></i></td><td>1</td></tr>
+                <tr><td>Clarity and visuals</td><td><i class="dot g"></i></td><td>2</td></tr>
+              </tbody>
+              <thead><tr><th>Improvements</th><th></th><th>n</th></tr></thead>
+              <tbody>
+                <tr><td>Slower and simpler</td><td></td><td>2</td></tr>
+                <tr><td>More scenarios</td><td></td><td>1</td></tr>
+                <tr><td>Add creative details</td><td></td><td>2</td></tr>
+                <tr class="none"><td>None</td><td><i class="dot n"></i></td><td>6</td></tr>
+                <tr class="hl"><td>Add more text details</td><td></td><td>4</td></tr>
+                <tr class="hl"><td>Improve text wording</td><td></td><td>2</td></tr>
+                <tr><td>Video instead of images</td><td></td><td>2</td></tr>
+                <tr><td>Add audio</td><td></td><td>2</td></tr>
+                <tr><td>Quiz after each scenario</td><td></td><td>1</td></tr>
+                <tr><td>Add chat bot</td><td></td><td>1</td></tr>
+              </tbody>
+            </table>
+            <div class="qt-key"><span><i class="dot g"></i>positive</span><span><i class="dot o"></i>negative</span><span><i class="dot n"></i>none / no improvements</span></div>
+          </div>
+          <div class="box score-card"><h4>Character identification</h4>
+            <span class="score">7.00<small>/10</small></span>
+            <p>Relatable scenarios were the main reason. Personalization options were an important suggestion for improvement.</p>
+            <table class="qt">
+              <thead><tr><th>Reason</th><th></th><th>n</th></tr></thead>
+              <tbody>
+                <tr class="hl"><td>Relatable character gender</td><td></td><td>5</td></tr>
+                <tr class="hl"><td>Relatable character job</td><td></td><td>6</td></tr>
+                <tr><td>Third person story perspective</td><td></td><td>1</td></tr>
+                <tr><td>Characters represented well</td><td></td><td>2</td></tr>
+                <tr class="hl"><td>Relatable story scenarios</td><td></td><td>11</td></tr>
+              </tbody>
+              <thead><tr><th>Improvements</th><th></th><th>n</th></tr></thead>
+              <tbody>
+                <tr class="hl"><td>Side character originality</td><td></td><td>2</td></tr>
+                <tr><td>More visual diversity and variety</td><td></td><td>4</td></tr>
+                <tr class="none"><td>No improvements</td><td><i class="dot n"></i></td><td>10</td></tr>
+                <tr><td>Less gender bias</td><td></td><td>1</td></tr>
+                <tr class="hl"><td>Personalize own character</td><td></td><td>2</td></tr>
+                <tr><td>Add audio</td><td></td><td>1</td></tr>
+                <tr class="hl"><td>Personalized story</td><td></td><td>2</td></tr>
+              </tbody>
+            </table>
+            <div class="qt-key"><span><i class="dot g"></i>positive</span><span><i class="dot o"></i>negative</span><span><i class="dot n"></i>none / no improvements</span></div>
+          </div>
+          <div class="box score-card"><h4>Perceived influence</h4>
+            <span class="score">5.37<small>/10</small></span>
+            <p>Users felt their influence on the story was limited and wanted more concrete answer options and more decision-making influence.</p>
+            <table class="qt">
+              <thead><tr><th>Reason</th><th></th><th>n</th></tr></thead>
+              <tbody>
+                <tr><td>Good content</td><td><i class="dot g"></i></td><td>1</td></tr>
+                <tr class="hl"><td>Confusion with options, little freedom</td><td><i class="dot o"></i></td><td>3</td></tr>
+                <tr class="hl"><td>High influence and logical flow</td><td><i class="dot g"></i></td><td>6</td></tr>
+                <tr class="hl"><td>Low influence of decisions on flow</td><td><i class="dot o"></i></td><td>14</td></tr>
+              </tbody>
+              <thead><tr><th>Improvements</th><th></th><th>n</th></tr></thead>
+              <tbody>
+                <tr class="hl"><td>Answer options: clearer wording</td><td></td><td>3</td></tr>
+                <tr><td>Buttons for navigation interaction</td><td></td><td>1</td></tr>
+                <tr class="hl"><td>Answer options: more concrete and more variation</td><td></td><td>6</td></tr>
+                <tr class="hl"><td>More flow influence of decisions</td><td></td><td>3</td></tr>
+                <tr class="none"><td>No improvements</td><td><i class="dot n"></i></td><td>4</td></tr>
+                <tr><td>Different storyline endings</td><td></td><td>1</td></tr>
+                <tr class="hl"><td>No story loop</td><td></td><td>3</td></tr>
+                <tr><td>Option to end the story</td><td></td><td>1</td></tr>
+                <tr><td>Personalized, customized content</td><td></td><td>2</td></tr>
+              </tbody>
+            </table>
+            <div class="qt-key"><span><i class="dot g"></i>positive</span><span><i class="dot o"></i>negative</span><span><i class="dot n"></i>none / no improvements</span></div>
+          </div>
+        </div>
+        <div class="box answer reveal" style="margin-top:1rem;"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/></svg></div>
+          <p>The <b>user experience was very positive</b> and the stories were easy to understand. Relatable situations and
+            roles promote identification with the characters, but the simple, understandable format competes with
+            perceived influence and originality.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUTURE WORK -->
+    <section id="future" aria-labelledby="future-h">
+      <div class="inner">
+        <div class="sec-label reveal">Future Work</div>
+        <h2 class="sec-h2 reveal" id="future-h">The project is still ongoing.</h2>
+        <div class="grid g3 reveal">
+          <div class="box"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <h4>Extended user study</h4>
+            <p>We sent the study questionnaire out again to see whether there are long-term effects. Ten additional responses
+              so far; the evaluation is still pending.</p>
+          </div>
+          <div class="box"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11V5a2 2 0 0 1 4 0v6"/><path d="M13 10.5V9a2 2 0 0 1 4 0v3"/><path d="M17 11.5a2 2 0 0 1 4 0V15a7 7 0 0 1-7 7h-1.5a6 6 0 0 1-4.6-2.2L4.6 16a2 2 0 0 1 3-2.6L9 15"/></svg></div>
+            <h4>UI &amp; interaction</h4>
+            <p>Implement the feedback from the study, especially more personalization and more influence of users on the
+              story.</p>
+          </div>
+          <div class="box"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <h4>Test in real environments</h4>
+            <p>Testing and evaluating the system in real world environments like universities, companies, open public
+              spaces etc. (currently fixed lab settings and a fixed participant).</p>
+          </div>
+        </div>
+
+        <div class="grid g3 reveal">
+          <figure class="fig even">
+            <div class="media"><img src="img/thesis/Future Work - Map.png" alt="Prototype of an interactive story map on the display" loading="lazy"></div>
+            <figcaption><b>Story map:</b> view your state, flow and available options</figcaption>
+          </figure>
+          <figure class="fig even">
+            <div class="media"><img src="img/thesis/Future Work - Character Personalization.png" alt="Prototype screens for customizing a main story character by hair, eyes, skin, clothing and name" loading="lazy"></div>
+            <figcaption><b>Custom characters:</b> customize your own main story character</figcaption>
+          </figure>
+          <figure class="fig even">
+            <div class="media"><img src="img/thesis/Future Work - Character Creation.png" alt="Prototype screens where a selfie is turned into the main story character" loading="lazy"></div>
+            <figcaption><b>Immersive mode:</b> become the main story character – take a selfie</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFLECTION -->
+    <section id="reflection" aria-labelledby="reflection-h">
+      <div class="inner">
+        <div class="sec-label reveal">Reflection</div>
+        <h2 class="sec-h2 reveal" id="reflection-h">My most important learnings.</h2>
+        <div class="grid g2 reveal">
+          <div class="box"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+            <h4>Iteration is part of the process</h4>
+            <p>Many concepts took a lot of work and still turned out not to be the best solution. Then you have to be able
+              to let them go, instead of keeping them just because of the time invested. Being part of the process doesn't
+              make that work unnecessary. It makes the result more validated.</p>
+          </div>
+          <div class="box"><div class="research-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+            <h4>Designing around limits</h4>
+            <p>Costs and the limits of the AI models shaped the format more than any first idea. With all the resources in
+              the world, this process would have looked very different. But that's usually not the case. As a designer,
+              you have to learn how to make things work with what you have.</p>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
+
+  <div class="tip" id="tip" role="tooltip"></div>
 
   <!-- FOOTER -->
   <footer class="site-footer" id="contact" role="contentinfo" aria-labelledby="footer-h">
@@ -1376,6 +1136,17 @@
     dClose.addEventListener('click', closeDrawer);
     overlay.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+    /* CITATIONS: open sources before jumping */
+    document.querySelectorAll('.cite').forEach(a => a.addEventListener('click', () => { document.getElementById('sources').open = true; }));
+
+    /* CHART TOOLTIP */
+    const tip = document.getElementById('tip');
+    document.querySelectorAll('[data-tip]').forEach(el => {
+      el.addEventListener('mouseenter', () => { tip.textContent = el.dataset.tip; tip.classList.add('on'); });
+      el.addEventListener('mousemove', e => { tip.style.left = (e.clientX + 14) + 'px'; tip.style.top = (e.clientY - 34) + 'px'; });
+      el.addEventListener('mouseleave', () => tip.classList.remove('on'));
+    });
 
   </script>
 
